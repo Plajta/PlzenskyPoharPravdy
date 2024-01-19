@@ -83,5 +83,16 @@ function watch(pos) {
         L.marker([latitude, longitude]).addTo(map)
         .bindPopup('Vaše poloha')
         .openPopup();
+
+        //test
+        add_polygon([
+            [51.509, -0.08],
+            [51.503, -0.06],
+            [51.51, -0.047]
+        ], map)
     }
+}
+
+function add_polygon(coords, map){
+    L.polygon(coords).addTo(map);
 }
