@@ -11,6 +11,9 @@ def index():
 @socketio.on('generate')
 def handle_message(data):
     print('received message:', data)
+    latitude = data["lat"]
+    longitude = data["lng"]
+    
 
 if __name__ == '__main__':
     socketio.run(app, allow_unsafe_werkzeug=True)
