@@ -6,12 +6,11 @@ socketio = SocketIO(app)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('index.html')data
 
-@socketio.event
-def send_data_request(message):
-    print(message)
-    emit('data', {'data': 'got it!'})
+@socketio.on('generate')
+def handle_message(data):
+    print('received message:', data)
 
 if __name__ == '__main__':
     socketio.run(app)

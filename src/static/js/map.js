@@ -1,3 +1,4 @@
+
 const API_KEY = 'YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA';
 const options = {
     enableHighAccuracy: false,
@@ -110,6 +111,15 @@ function watch(pos) {
         ], map)
 
         add_circle([latitude, longitude])
+        marker = L.marker([latitude, longitude], { draggable: true }).addTo(map);
+
+        // Event listener to handle marker dragend event
+        marker.on('dragend', function (event) {
+            var marker = event.target;
+            var position = marker.getLatLng();
+            console.log('Marker dragged to:', position);
+        });
+        marker.bindPopup("<b>Tohle to je </b><br>místo odpálení bomby").openPopup()
     }
 }
 
@@ -136,3 +146,4 @@ function add_icon(coords, marker_color, text = ""){
     addTo(map)
     .openPopup()
 }
+

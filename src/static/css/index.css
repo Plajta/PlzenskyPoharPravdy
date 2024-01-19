@@ -22,5 +22,6 @@ body{
     grid-template-columns: 75% auto;
     padding: 30px 20px;
     height: 100%;
+    gap: 5px;
     box-sizing: border-box;
 }

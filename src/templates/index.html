@@ -11,11 +11,10 @@
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <link rel="stylesheet" href="../static/css/index.css">
         <link rel="stylesheet" href="../static/css/stylesheet.css">
-        <script src="../static/js/map.js"></script>
     </head>
     <body>
         <div class="main_main_cont">
@@ -29,6 +28,8 @@
             var error = "{{ error }}";
             var error_desc = "{{ error_desc }}";
         </script> -->
+        <script> var marker; </script>
+        <script src="../static/js/map.js"></script>
         <script type="text/babel" src="../static/js/index.js" async defer></script>
     </body>
 </html>
