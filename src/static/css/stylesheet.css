@@ -8,6 +8,46 @@
     padding-top: 2vh;
 }
 
+
+.menu{
+    margin: 0 auto ;
+    width: 75%;
+    
+}
+
+.typetextdiv{
+    border-radius: 20px;
+    margin: 0 auto ;
+    background-color: #404040;
+    
+    padding: 1vh;
+    padding-left: 3vw;
+    height: 4vh;
+    width: calc(100% - 3vw);
+    margin-bottom: 2vh;
+    
+}
+
+.typetext{
+    width: calc(100% - 6vw);
+    font-size: large;
+    font-weight: 900;
+    color: wheat;
+    font-family: 'Courier New', monospace;
+    margin: 0 auto;
+    border: none;
+    background-color: #404040;
+    height: 100%;
+}
+
+.search{
+    width: 3vw;
+}
+
+input::placeholder{
+    color: wheat;
+    
+}
 /*
 .search{
     border: 20px;

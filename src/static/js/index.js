@@ -2,16 +2,19 @@
 function Menu() {
     return (
     <div className="menu">
+
         
-        <div className="search"></div>
-        <input type="text" id="mesto" name="mesto" placeholder="Search"/>
-        <input type="text" id="dataset" name="dataset" placeholder=""/>
+        <div className="typetextdiv">
+            <i class="fa-solid fa-magnifying-glass search"></i>
+            <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search"/>
+            </div>
+        
+        <input type="text" className="typetext" id="dataset" name="dataset"/>
 
         <div>
-            <button>nukede</button>
-            <button>generate</button>
+            <button onclick="sendMessage(nukede 40 50)">nukede</button>
+            <button onclick="sendMessage(generate data)">generate</button>
         </div>
-        
     </div>
     )
 }
