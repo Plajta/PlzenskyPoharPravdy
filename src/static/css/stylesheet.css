@@ -1,5 +1,9 @@
-.menu{
-    background-color: 212121;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+.main_cont{
+    background-color: #212121;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: white;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
