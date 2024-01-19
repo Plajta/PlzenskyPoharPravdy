@@ -2,7 +2,22 @@
     background-color: #212121;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    color: white;
+    color: wheat;
     height: 100%;
     box-sizing: border-box;
+    padding-top: 2vh;
 }
+
+/*
+.search{
+    border: 20px;
+    background-color: #404040;
+    margin: 0 auto ;
+    height: 2vh;
+    width: 75%;
+    padding: 20px;
+    border-radius: 20px;
+    font-weight: bolder;
+    font-family: 'Courier New', monospace;
+    
+}*/
