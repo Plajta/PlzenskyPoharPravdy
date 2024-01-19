@@ -6,21 +6,36 @@ function generateHandler(){
 
 
 function Menu() {
+    const [value, setValue] = React.useState(false);
     return (
+        
     <div className="menu">
-
-        
-        <div className="typetextdiv">
-            <i className="fa-solid fa-magnifying-glass search"></i>
-            <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search"/>
-            </div>
-        
-        <input type="text" className="typetext" id="dataset" name="dataset"/>
-
-        <div>
-            <button >nukede</button>
-            <button >generate</button>
+        <div className="menu_change_buttons">
+            <div className={!value && "menu_change_buttons menu_change_button_active"} onClick={() => {setValue(false)}}>Farts</div>
+            <div className={value && "menu_change_buttons menu_change_button_active"} onClick={() => {setValue(true)}}>Nukede</div>
         </div>
+        {!value && (
+            <>
+                <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search"/>
+            
+                <input type="text" className="typetext" id="dataset" name="dataset"/>
+
+                <div>
+                    <button>generate</button>
+                </div>
+            </>
+        )}
+        {value && (
+            <>
+                <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Bomb Name"/>
+            
+                <input type="text" className="typetext" id="dataset" name="dataset"/>
+
+                <div>
+                    <button>nukede</button>
+                </div>
+            </>
+        )}
     </div>
     )
 }

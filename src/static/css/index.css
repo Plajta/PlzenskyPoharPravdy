@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nunito+Sans:opsz@6..12&display=swap');
+
 *{
     margin: 0;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 html{
@@ -11,11 +14,31 @@ body{
     box-sizing: border-box;
     
 }
+
+button{
+    background-color: #292929;
+    color: wheat;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-size: 18px;
+}
+button:hover{
+    background-color: #404040;
+    color: wheat;
+    transition: 0.3s;
+}
+button:active{
+    background-color: #759AAB;
+    color: black;
+    transition: 0.1s;
+}
 #map { 
     height: 100%;
     box-sizing: border-box;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 .main_main_cont{
     display: grid;
