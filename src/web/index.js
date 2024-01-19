@@ -10,6 +10,25 @@ var latitude = 49.736953
 
 var map = undefined
 
+var userIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+    text: "vaše poloha"
+});
+
+var targetIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
 window.onload = () => {
 
     id = navigator.geolocation.watchPosition(watch, (err) => {
@@ -80,19 +99,40 @@ function watch(pos) {
             attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
         }).addTo(map);
 
-        L.marker([latitude, longitude]).addTo(map)
-        .bindPopup('Vaše poloha')
-        .openPopup();
+        add_icon([latitude, longitude], userIcon, "vaše poloha")
 
         //test
+        add_icon([latitude + 0.05, longitude + 0.05], targetIcon, "místo odpálení bomby")
         add_polygon([
-            [51.509, -0.08],
-            [51.503, -0.06],
-            [51.51, -0.047]
+            [latitude, longitude],
+            [latitude - 5, longitude - 5],
+            [latitude - 5, longitude + 5]
         ], map)
+
+        add_circle([latitude, longitude])
     }
 }
 
 function add_polygon(coords, map){
     L.polygon(coords).addTo(map);
+}
+
+function add_circle(coords){
+    L.circle(coords, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 3000
+    }).addTo(map);
+}
+
+function add_icon(coords, marker_color, text = ""){
+    L.marker(coords, {icon: marker_color})
+    .bindTooltip(text, 
+    {
+        permanent: true, 
+        direction: 'right'
+    }).
+    addTo(map)
+    .openPopup()
 }
