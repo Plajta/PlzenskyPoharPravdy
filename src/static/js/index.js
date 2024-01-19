@@ -1,6 +1,10 @@
 
 function Menu() {
-    return (<div className="menu">Menu</div>)
+    return (
+    <div className="menu">Menu
+    <button>generate </button>
+    </div>
+    )
 }
 function App() {
     return(
