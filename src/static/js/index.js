@@ -1,6 +1,6 @@
 
 function Menu() {
-    return (<div className="map_cont">Menu</div>)
+    return (<div className="menu">Menu</div>)
 }
 function App() {
     return(
