@@ -1,0 +1,46 @@
+{
+    "comment": {
+         "name": "name of the nuke",
+         "energy": "released energy measured in kilotons",
+         "blast-radius": "blast radius measured in kilometers",
+         "blast-area": "blast area measured in kilometers squared",
+         "producer": "producer of the atomic bomb"
+    },
+    "nukes": [
+        {
+            "name": "Fat Man",
+            "energy": 20,
+            "blast-radius": 0.76,
+            "blast-area": 1.82,
+            "producer": "USA"
+        },
+        {
+            "name": "Little Boy",
+            "energy": 15,
+            "blast-radius": 1.2,
+            "blast-area": 4.51,
+            "producer": "USA"
+        },
+        {
+            "name": "Castle Bravo",
+            "energy": 15000,
+            "blast-radius": 5.37,
+            "blast-area": 90.5,
+            "producer": "USA"
+        },
+        {
+            "name": "Tsar Bomba (50Mt)",
+            "energy": 50000,
+            "blast-radius": 8.91,
+            "blast-area": 249,
+            "producer": "Russia"
+        },
+        {
+            "name": "Tsar Bomba (50Mt)",
+            "energy": 100000,
+            "blast-radius": 20,
+            "blast-area": 3.350,
+            "producer": "Russia"
+        }
+    ]
+}
