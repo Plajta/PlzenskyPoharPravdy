@@ -17,9 +17,6 @@ body{
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
-#root{
-    width: 100px;
-}
 .main_main_cont{
     display: grid;
     grid-template-columns: 75% 25%;
