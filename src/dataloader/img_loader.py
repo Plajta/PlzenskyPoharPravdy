@@ -12,6 +12,7 @@ slice_fact = 1000
 #
 # FOR VISUALISATION
 #
+"""
 for filename in os.listdir(img_data_path):
     if filename == ".gitkeep":
         continue
@@ -53,6 +54,11 @@ for filename in os.listdir(img_data_path):
                 cv2.imshow("test", img_slice)
                 cv2.imshow("contour", contour_image)
                 cv2.waitKey(0)
+"""
+
+#
+# TOO BIG FUCKING IMAGE, WHAT THE FUCK AM I SUPPOSED TO DO WITH THIS TODO
+#
 
 for filename in os.listdir(img_data_path):
     if filename == ".gitkeep":
@@ -62,3 +68,13 @@ for filename in os.listdir(img_data_path):
 
     img[img == 250] = 255
     img[img == 1] = 0
+
+    leftmost_pixel = None
+
+    black_pixels = cv2.findNonZero(img)
+
+    if black_pixels is not None and len(black_pixels) > 0:
+        leftmost_pixel = tuple(black_pixels[0][0])
+        print("Coordinates of the leftmost black pixel:", leftmost_pixel)
+    else:
+        print("No black pixels found in the image.")
