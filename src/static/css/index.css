@@ -4,21 +4,28 @@
 
 html{
     background: #1B1B1B; 
+    height: 100vh;
 }
 body{
+    height: 100%;
     box-sizing: border-box;
-}
-#map { 
-}
-
-.map_cont{
     
 }
-
-.main_cont{
+#map { 
+    height: 100%;
+    box-sizing: border-box;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+#root{
+    width: 100px;
+}
+.main_main_cont{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 75% 25%;
     gap: 30px;
-    height: 100vh;
-    padding: 50px;
+    padding: 50px 20px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
