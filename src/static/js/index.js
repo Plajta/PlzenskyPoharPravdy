@@ -4,10 +4,9 @@ function Menu() {
 }
 function App() {
     return(
-        <div>  
+        <div className="main_cont">  
             <Menu />
             <MapShow />
-            <h1>hello</h1>
         </div>
     );
 }
