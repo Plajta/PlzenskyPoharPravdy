@@ -6,7 +6,7 @@ socketio = SocketIO(app)
 
 @app.route("/")
 def index():
-    return render_template('index.html')data
+    return render_template('index.html')
 
 @socketio.on('generate')
 def handle_message(data):
