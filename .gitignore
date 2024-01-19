@@ -1,3 +1,5 @@
+.idea
 env
-data/img_data/*
+data/*
 !data/img_data/.gitkeep
+!data/fetch.py

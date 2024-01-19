@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="/doc/PlzenskyPoharPravdyLogo.png" alt="PPP logo"/>
+</p>
+
+
 # PlzenskyPoharPravdy
 
 Uskupení několika datových zdrojů které se načítají do interaktivní webové aplikace, bylo zpracováno týmem plajta na HackujStat ver. 5.
