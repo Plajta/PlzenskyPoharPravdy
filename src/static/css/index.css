@@ -1,11 +1,19 @@
+*{
+    margin: 0;
+}
+
+html{
+    max-height: 100vh;;
+}
+
 #map { 
-    height: 1000px 
+    height: 90vh 
 }
 
 
-.map_cont{
-    
-}
 .main_cont{
-    
+    display: grid;
+    grid-template-columns: auto auto;
+    background: #1B1B1B; 
+    gap: ;
 }
