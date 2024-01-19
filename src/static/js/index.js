@@ -1,6 +1,6 @@
 
 var socket = io();
-function generateHandler(){
+function nukedeHandler(){
     socket.emit('generate', marker.getLatLng());
 }
 
@@ -32,7 +32,7 @@ function Menu() {
                 <input type="text" className="typetext" id="dataset" name="dataset"/>
 
                 <div>
-                    <button>nukede</button>
+                    <button onClick={nukedeHandler}>nukede</button>
                 </div>
             </>
         )}
