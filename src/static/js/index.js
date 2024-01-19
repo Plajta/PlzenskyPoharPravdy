@@ -6,7 +6,6 @@ function App() {
     return(
         <div className="main_cont">  
             <Menu />
-            <MapShow />
         </div>
     );
 }
