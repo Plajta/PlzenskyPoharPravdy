@@ -10,7 +10,7 @@ function nukedeHandler(nuke_value){
 
 socket.on('explode_nuke', function(nuke_data){
     map.remove()
-    map = L.map('map').setView({lng: bomb_longitude, lat: bomb_latitude}, 14);
+    map = L.map('map').setView({lng: bomb_longitude, lat: bomb_latitude}, 12);
 
     L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
         minZoom: 0,
@@ -113,7 +113,7 @@ function Menu() {
         <>
             <div className="menu_change_buttons">
                 <div className={!value && "menu_change_buttons menu_change_button_active"} onClick={() => factsmapChange(setValue)}>Fakty</div>
-                <div className={value && "menu_change_buttons menu_change_button_active"} onClick={() => nukemapChange(setValue)}>Zbraň</div>
+                <div Style="border-radius: 0 10px 0 0;" className={value && "menu_change_buttons menu_change_button_active"} onClick={() => nukemapChange(setValue)}>Zbraň</div>
             </div>
             <div className="menu">
                 
@@ -132,7 +132,30 @@ function Menu() {
                         <select value={nuke_value} onChange={e => nuke_setValue(e.target.value)} className="typetext">
                             {nuke_option_list}
                         </select>
-
+                        <div className="circletitle">
+                            <div Style="color:red">■</div>
+                            <div>hello</div>
+                        </div>
+                        <div className="circletitle">
+                            <div Style="color:#ff8800">■</div>
+                            <div>hello</div>
+                        </div>
+                        <div className="circletitle">
+                            <div Style="color:#42f56c">■</div>
+                            <div>hello</div>
+                        </div>
+                        <div className="circletitle">
+                            <div Style="color:green">■</div>
+                            <div>hello</div>
+                        </div>
+                        <div className="circletitle">
+                            <div Style="color:#ffe100">■</div>
+                            <div>hello</div>
+                        </div>
+                        <div className="circletitle">
+                            <div Style="color:#595959">■</div>
+                            <div>hello</div>
+                        </div>
                         <div>
                             <button onClick={() => nukedeHandler(nuke_value)}>Spustit simulaci</button>
                         </div>

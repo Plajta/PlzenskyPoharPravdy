@@ -42,7 +42,6 @@ input::placeholder{
 .menu_change_buttons{
     display: flex;
     flex-direction: row;
-    gap: 5px;
     background-color: #292929;
     margin: 0 0px 30px 0px;
     border-radius: 0 10px 0 0;
@@ -54,15 +53,30 @@ input::placeholder{
     justify-content: center !important;
     width: 100%;
     box-sizing: border-box;
+    border-radius: 0;
     text-align: center;
     padding: 10px;
     font-size: 18px;
-    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border-bottom: 3px solid #404040
     
+}
+.menu_change_buttons div:hover{
+    background-color: #404040;
+    color: wheat;
+    transition: 0.3s;
 }
 .menu_change_button_active {
     border-bottom: 3px solid #759AAB !important;
     color: #759AAB;
     font-size: 18px;
+    transition: 0.4s ;
     
+}
+.circletitle{
+    display: inline-block;
+    justify-content: start !important;
+    gap: 10px;
+    padding: 0 10px;
 }
