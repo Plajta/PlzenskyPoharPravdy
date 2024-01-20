@@ -56,34 +56,36 @@ function Menu() {
     const [value, setValue] = React.useState(false);
     const [nuke_value, nuke_setValue] = React.useState("Little Boy");
     return (
-        
-    <div className="menu">
-        <div className="menu_change_buttons">
-            <div className={!value && "menu_change_buttons menu_change_button_active"} onClick={() => factsmapChange(setValue)}>Farts</div>
-            <div className={value && "menu_change_buttons menu_change_button_active"} onClick={() => nukemapChange(setValue)}>Nukede</div>
-        </div>
-        {!value && (
-            <>
-                <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search"/>
-            
-                <input type="text" className="typetext" id="dataset" name="dataset"/>
-                <div>
-                    <button>generate</button>
-                </div>
-            </>
-        )}
-        {value && (
-            <>
-                <select value={nuke_value} onChange={e => nuke_setValue(e.target.value)} className="typetext">
-                    {nuke_option_list}
-                </select>
+        <>
+            <div className="menu_change_buttons">
+                <div className={!value && "menu_change_buttons menu_change_button_active"} onClick={() => factsmapChange(setValue)}>Farts</div>
+                <div className={value && "menu_change_buttons menu_change_button_active"} onClick={() => nukemapChange(setValue)}>Nukede</div>
+            </div>
+            <div className="menu">
+                
+                {!value && (
+                    <>
+                        <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search"/>
+                    
+                        <input type="text" className="typetext" id="dataset" name="dataset"/>
+                        <div>
+                            <button>generate</button>
+                        </div>
+                    </>
+                )}
+                {value && (
+                    <>
+                        <select value={nuke_value} onChange={e => nuke_setValue(e.target.value)} className="typetext">
+                            {nuke_option_list}
+                        </select>
 
-                <div>
-                    <button onClick={() => nukedeHandler(nuke_value)}>Nukede!</button>
-                </div>
-            </>
-        )}
-    </div>
+                        <div>
+                            <button onClick={() => nukedeHandler(nuke_value)}>Nukede!</button>
+                        </div>
+                    </>
+                )}
+            </div>
+        </>
     )
 }
 function App() {

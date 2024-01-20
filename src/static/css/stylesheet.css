@@ -5,15 +5,19 @@
     color: wheat;
     height: 100%;
     box-sizing: border-box;
+    display: inline;
 }
 
 
 .menu{
     margin: 0 auto ;
-    width: 75%;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    padding: 20px;
+    min-width: 300px;
 }
 .menu div{
     display: flex;
@@ -31,6 +35,7 @@ input::placeholder{
     padding: 5px 10px;
     font-size: 18px;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 
@@ -38,20 +43,26 @@ input::placeholder{
     display: flex;
     flex-direction: row;
     gap: 5px;
+    background-color: #292929;
+    margin: 0 0px 30px 0px;
+    border-radius: 0 10px 0 0;
+    
 }
 .menu_change_buttons div{
+    
+    margin: 0;
     justify-content: center !important;
-    background-color: #404040;
     width: 100%;
     box-sizing: border-box;
     text-align: center;
-    padding: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    padding: 10px;
     font-size: 18px;
+    border: none;
+    
 }
 .menu_change_button_active {
-    background-color: #759AAB !important;
-    color: black;
+    border-bottom: 3px solid #759AAB !important;
+    color: #759AAB;
+    font-size: 18px;
     
 }
