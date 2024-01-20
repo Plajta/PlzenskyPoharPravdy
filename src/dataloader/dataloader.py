@@ -20,7 +20,7 @@ class Dataloader:
         self.csv_files = {}
         file_list = os.listdir(path)
 
-        csv_names = [f"{path}/{file}" for file in file_list if ".csv" in file]
+        csv_names = [os.path.join(path,file) for file in file_list if ".csv" in file]
         with Pool(processes=self.proc_count) as pool:
             for filename, csv in pool.map(loader, csv_names):
                 self.csv_files[filename] = csv
