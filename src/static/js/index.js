@@ -112,11 +112,18 @@ const nuke_option_list = nuckes_list.map(nuke =>
 function Menu() {
     const [value, setValue] = React.useState(false);
     const [nuke_value, nuke_setValue] = React.useState("LittleBoy");
-    const [textdesc, setDescText] = React.useState([]);
+    const [textdesc, setDescText] = React.useState("");
+    const [textmesage, setMesageText] = React.useState("");
     React.useEffect(() => {
         socket.on("explode_nuke", (data) => {
             console.log(data["data"]["all_peope"]);
             setDescText(data["data"])
+        })
+    })
+    React.useEffect(() => {
+        socket.on("send_random_fact", (data) => {
+            console.log(data);
+            setMesageText(data)
         })
     })
     return (
@@ -129,9 +136,9 @@ function Menu() {
                 
                 {!value && (
                     <>
-                        <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search"/>
-                    
-                        <input type="text" className="typetext" id="dataset" name="dataset"/>
+                        <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search" value="Prague"/>
+                        {/* <input type="text" className="typetext" id="dataset" name="dataset"/> */}
+                        <p>{textmesage}</p>
                         <div>
                             <button onClick={generateHandler}>generate</button>
                         </div>
