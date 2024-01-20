@@ -24,12 +24,12 @@ const nukemapChange = (setValue) => {
     // add_circle([latitude, longitude])
 
     marker_bomb = L.marker([bomb_latitude, bomb_longitude], { draggable: true }).addTo(map);
-    marker_bomb.bindPopup("<b>Vaši bomba</b>").openPopup()
+    marker_bomb.bindPopup("<b>Vaše bomba</b>").openPopup()
     marker_bomb.on('dragend', function (event) {
         var marker = event.target;
         bomb_latitude = marker_bomb.getLatLng().lat;
         bomb_longitude = marker_bomb.getLatLng().lng;
-        marker.bindPopup("<b>Vaši bomba</b>").openPopup()
+        marker.bindPopup("<b>Vaše bomba</b>").openPopup()
     });
 }
 

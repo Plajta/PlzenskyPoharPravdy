@@ -4,12 +4,18 @@ import json
 import os
 import requests
 
+#own modules
+from dataloader.loc_compute import MapDataManipulator
+
 #variables
 nuke_config_path = os.getcwd()[:os.getcwd().index("PlzenskyPoharPravdy") + len("PlzenskyPoharPravdy")] + "/data/other_data/nuke_config.json"
 
 #loading nukes
 nuke_config = open(nuke_config_path)
 nuke_config_data = json.load(nuke_config)
+
+#loading all the map data to RAM
+map_manip = MapDataManipulator()
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -43,14 +49,19 @@ def handle_nukede(data):
     latitude = data["lat"]
     longitude = data["lng"]
     choosed_nuke = data["choosed_nuke"]
-    x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
-                     params={"lon": longitude, "lat": latitude},
-                     headers={"accept": "application/json",
-                              "X-Mapy-Api-Key": "YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA"})
 
-    for y in x.json()["items"][0]["regionalStructure"]:
-        if y["type"] == "regional.municipality":
-            print(y["name"])
+    #city info
+    try:
+        x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
+                        params={"lon": longitude, "lat": latitude},
+                        headers={"accept": "application/json",
+                                "X-Mapy-Api-Key": "YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA"})
+
+        for y in x.json()["items"][0]["regionalStructure"]:
+            if y["type"] == "regional.municipality":
+                print(y["name"])
+    except Exception as e:
+        print(e)
 
     #get nuke params
     selected_nuke = None
@@ -62,6 +73,9 @@ def handle_nukede(data):
     if selected_nuke == None:
         print("no nuke found!")
         emit("server_response", "no_nuke_found")
+
+    #if everything is oke, we shall continue right?
+    map_manip.ProcessPoI(longitude, latitude)
 
     
 

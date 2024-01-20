@@ -1,10 +1,13 @@
 .idea
 env
+src/dataloader/__pycache__/
 
 data/img_data/*
 data/gen_data/*
 
 !data/img_data/.gitkeep
+!data/img_data/README.txt
+
 !data/gen_data/.gitkeep
 !data/other_data/.gitkeep
 
