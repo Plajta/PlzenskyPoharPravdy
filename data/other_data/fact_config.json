@@ -124,6 +124,7 @@
         "template": "Vědeli jste, že podle statistik z roku {rok} je v {obec} {pocet_bezkuch} domů bez kuchyně nebo kuchyňského koutu?"
     },
     "prum_muz": {
+        "filepath": "data/csv_data/vek_podle_pohlavi.csv",
         "columns": [
             {
                 "column": "pohlavi_kod",
@@ -142,6 +143,7 @@
         "template": "Vědeli jste, že podle statistik z roku {rok} je průměrnému muži v {obec} {prum_vek} let?"
     },
     "prum_zena": {
+        "filepath": "data/csv_data/vek_podle_pohlavi.csv",
         "columns": [
             {
                 "column": "pohlavi_kod",

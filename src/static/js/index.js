@@ -191,9 +191,9 @@ function Menu() {
                         </div>
                         {textdesc != "" && (
                             <>
-                                <p>víte že jste pravě zabili {textdesc["all_peope"]} lidi!</p>
-                                <p>žen {textdesc["women"]} %</p>
-                                <p>muž {textdesc["men"]} %</p>
+                                <p>Víte, že jste pravě zabili {textdesc["all_peope"]} lidí?</p>
+                                <p>{textdesc["women"]}% žen</p>
+                                <p>{textdesc["men"]}% mužů</p>
                             </>
                         )
                         }
