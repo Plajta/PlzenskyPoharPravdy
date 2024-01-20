@@ -41,6 +41,10 @@
         {
             "name": "kuchyne.csv",
             "link": "https://www.czso.cz/documents/62353418/192056095/sldb2021_byty_kuchyne.csv"
+        },
+        {
+            "name": "lide.csv",
+            "link": "https://www.czso.cz/documents/62353418/183907242/sldb2021_vek5_pohlavi.csv"
         }
     ]
 }

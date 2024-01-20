@@ -4,6 +4,7 @@ src/dataloader/__pycache__/
 
 data/img_data/
 data/gen_data/
+data/csv_data/
 !data/csv_data/README.txt
 
 !data/img_data/.gitkeep
