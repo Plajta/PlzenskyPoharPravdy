@@ -45,14 +45,14 @@ class MapDataManipulator:
     def ProcessPoI(self, longitude, latitude):
         # process Point-of-Impact (where the nuke lands)       
 
-        long_diff = (latitude - self.czech_rep_config_data["points"][2]["lon"])
-        lat_diff = (longitude - self.czech_rep_config_data["points"][0]["lat"])
+        print("lat", latitude)
+        print("long", longitude)
 
-        print(long_diff)
-        print(lat_diff)
+        long_diff = (latitude - self.czech_rep_config_data["points"][2]["lat"])
+        lat_diff = (longitude - self.czech_rep_config_data["points"][0]["lon"])
 
         x_impact = round(self.lon_to_pix * long_diff)
         y_impact = round(self.lat_to_pix * lat_diff)
-        print(x_impact)
-        print(y_impact)
 
+        cv2.circle(self.GRA, (x_impact, y_impact), 30, 0, -1)
+        imsave("test.tif",self.GRA)
