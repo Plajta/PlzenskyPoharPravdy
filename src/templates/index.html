@@ -31,7 +31,16 @@
             var error = "{{ error }}";
             var error_desc = "{{ error_desc }}";
         </script> -->
-        <script> var marker; </script>
+        
+        <script> 
+            var map = undefined; 
+            var marker_bomb
+            var marker_gps;
+            var longitude = 13.381112;
+            var latitude = 49.736953;
+            var bomb_longitude = 13.381112;
+            var bomb_latitude = 49.736953;
+        </script>
         <script src="../static/js/map.js"></script>
         <script type="text/babel" src="../static/js/index.js" async defer></script>
     </body>
