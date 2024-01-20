@@ -4,6 +4,8 @@ import json
 import os
 import requests
 from dataloader.dataloader import Dataloader
+import numpy as np
+from dataloader.random_fact import generate_fact
 
 
 #own modules
@@ -44,7 +46,24 @@ def index():
 
 @socketio.on('generate')
 def handle_generate(data):
-    print('received message:', data)
+    #generate random fact in current region
+
+    #city info
+    city = ""
+    try:
+        x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
+                        params={"lon": data["lng"], "lat": data["lat"]},
+                        headers={"accept": "application/json",
+                                "X-Mapy-Api-Key": "YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA"})
+
+        for y in x.json()["items"][0]["regionalStructure"]:
+            if y["type"] == "regional.municipality":
+                city = y["name"]
+    except Exception as e:
+        print(e)
+
+    fact_message = generate_fact(data_loader, city)
+    emit("send_random_fact", fact_message)
 
 
 @socketio.on('nukede')
@@ -68,9 +87,12 @@ def handle_nukede(data):
     except Exception as e:
         print(e)
 
-    data_all = data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt.isnull()", ["hodnota"])[0][0]
-    data_muz = data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='muž'", ["hodnota"])[0][0]
-    data_zen = data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='žena'", ["hodnota"])[0][0]
+    data_all = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt.isnull()", ["hodnota"])[0][0])
+    data_muz = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='muž'", ["hodnota"])[0][0])
+    data_zen = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='žena'", ["hodnota"])[0][0])
+
+    data_muz_percent = round((data_muz / data_all) * 100, 2)
+    data_zen_percent = round((data_zen / data_all) * 100, 2) 
 
     #get nuke params
     selected_nuke = None
