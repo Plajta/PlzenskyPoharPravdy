@@ -1,23 +1,19 @@
 {
     "img_data": [
         {
-            "dir": "nepropust-",
-            "name": "nepropustnost2018.tif",
+            "name": "IBU_2018_010m_CR.tif",
             "link": "https://geoportal.gov.cz/atom/hrl/IBU_2018_010m_CR.tif"
         },
         {
-            "dir": "vod_ploch-",
-            "name": "vodni_plochy2018.tif",
+            "name": "WAW_2018_010m_CR.tif",
             "link": "https://geoportal.gov.cz/atom/hrl/WAW_2018_010m_CR.tif"
         },
         {
-            "dir": "les-",
-            "name": "lesy2018.tif",
+            "name": "TCD_2018_010m_CR.tif",
             "link": "https://geoportal.gov.cz/atom/hrl/TCD_2018_010m_CR.tif"
         },
         {
-            "dir": "louk-",
-            "name": "louky2018.tif",
+            "name": "GRA_2018_010m_CR.tif",
             "link": "https://geoportal.gov.cz/atom/hrl/GRA_2018_010m_CR.tif"
         }
     ]
