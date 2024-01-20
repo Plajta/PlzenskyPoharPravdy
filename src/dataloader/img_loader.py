@@ -97,7 +97,6 @@ def normalize_and_modify():
         contour_data.append([extLeft, extRight, extTop, extBot])
         
     np_cnt_data = np.array(contour_data)
-    print(np_cnt_data)
 
     leftmost = round((np_cnt_data[:, 0].min() / resized.shape[0]) * img.shape[0])
     rightmost = round((np_cnt_data[:, 1].max() / resized.shape[0]) * img.shape[0])
