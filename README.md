@@ -3,7 +3,7 @@
 </p>
 
 
-# PlzenskyPoharPravdy
+# Plzenský Pohár Pravdy
 
 Uskupení několika datových zdrojů které se načítají do interaktivní webové aplikace, bylo zpracováno týmem plajta na HackujStat ver. 5.
 Aplikace nabízí hned několik funkcionalit:
