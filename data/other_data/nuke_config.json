@@ -9,6 +9,7 @@
     "nukes": [
         {
             "name": "Little Boy",
+            "value": "LittleBoy",
             "energy": 15,
             "fireball-radius": 0.2,
             "h-blast-radius": 0.34,
@@ -20,6 +21,7 @@
         },
         {
             "name": "Fat Man",
+            "value": "FatMan",
             "energy": 20,
             "fireball-radius": 0.22,
             "h-blast-radius": 0.76,
@@ -31,6 +33,7 @@
         },
         {
             "name": "Ivy King",
+            "value": "IvyKing",
             "energy": 500,
             "fireball-radius": 1.06,
             "h-blast-radius": 1.73,
@@ -42,6 +45,7 @@
         },
         {
             "name": "Castle Bravo",
+            "value": "CastleBravo",
             "energy": 15000,
             "radiation-radius": 3.63,
             "fireball-radius": 4.14,
@@ -53,6 +57,7 @@
         },
         {
             "name": "Tsar Bomba (50Mt)",
+            "value": "TsarBomba(50Mt)",
             "energy": 50000,
             "radiation-radius": 3.14,
             "fireball-radius": 5.16,
@@ -63,7 +68,8 @@
             "producer": "Russia"
         },
         {
-            "name": "Tsar Bomba (50Mt)",
+            "name": "Tsar Bomba (100Mt)",
+            "value": "TsarBomba(100Mt)",
             "energy": 100000,
             "radiation-radius": null,
             "fireball-radius": 6.71,
