@@ -16,5 +16,31 @@
             "name": "GRA_2018_010m_CR.tif",
             "link": "https://geoportal.gov.cz/atom/hrl/GRA_2018_010m_CR.tif"
         }
+    ],
+    "csv_data": [
+        {
+            "name": "pohyb2022.csv",
+            "link": "https://www.czso.cz/documents/62353418/213522460/130141-23data2022.csv"
+        },
+        {
+            "name": "skolske_zarizeni.csv",
+            "link": "https://www.czso.cz/documents/62353418/198619764/230057-23data101923.csv"
+        },
+        {
+            "name": "tur-a-prasata.csv",
+            "link": "https://www.czso.cz/documents/62353418/171347265/270248-22data020923.csv"
+        },
+        {
+            "name": "kanalizace.csv",
+            "link": "https://www.czso.cz/documents/62353418/200583836/sldb2021_obydomy_druh_odpad.csv"
+        },
+        {
+            "name": "vek_podle_pohlavi.csv",
+            "link": "https://www.czso.cz/documents/62353418/182807150/sldb2021_prumvek_pohlavi.csv"
+        },
+        {
+            "name": "kuchyne.csv",
+            "link": "https://www.czso.cz/documents/62353418/192056095/sldb2021_byty_kuchyne.csv"
+        }
     ]
 }

@@ -37,7 +37,7 @@ class MapDataManipulator:
 
         #compute lat_to_pix and lon_to_pix
         lat_diff = self.czech_rep_config_data["points"][0]["lat"] - self.czech_rep_config_data["points"][1]["lat"]
-        lon_diff = self.czech_rep_config_data["points"][2]["lon"] - self.czech_rep_config_data["points"][3]["lon"]
+        lon_diff = self.czech_rep_config_data["points"][3]["lon"] - self.czech_rep_config_data["points"][2]["lon"]
 
         self.lat_to_pix = self.GRA.shape[0] / lat_diff
         self.lon_to_pix = self.GRA.shape[1] / lon_diff
@@ -48,11 +48,11 @@ class MapDataManipulator:
         print("lat", latitude)
         print("long", longitude)
 
-        long_diff = abs(latitude - self.czech_rep_config_data["points"][2]["lat"])
-        lat_diff = abs(longitude - self.czech_rep_config_data["points"][0]["lon"])
+        long_diff = longitude - self.czech_rep_config_data["points"][2]["lon"]
+        lat_diff = latitude - self.czech_rep_config_data["points"][1]["lat"]
 
-        x_impact = round((self.lon_to_pix * long_diff) + (self.czech_rep_config_data["points"][0]["lon"] * long_diff))
-        y_impact = round((self.czech_rep_config_data["points"][2]["lat"] * lat_diff) - (self.lat_to_pix * lat_diff))
+        x_impact = round((self.czech_rep_config_data["points"][2]["lon"] * long_diff) + (self.lon_to_pix * long_diff))
+        y_impact = self.GRA.shape[0] - round((self.czech_rep_config_data["points"][1]["lat"] * lat_diff) + (self.lat_to_pix * lat_diff))
 
         print(x_impact)
         print(y_impact)

@@ -2,8 +2,9 @@
 env
 src/dataloader/__pycache__/
 
-data/img_data/*
-data/gen_data/*
+data/img_data/
+data/gen_data/
+data/csv_data/
 
 !data/img_data/.gitkeep
 !data/img_data/README.txt
@@ -13,3 +14,5 @@ data/gen_data/*
 
 #just when testing img loader
 test.tif
+!data/fetch.py
+!data/other_data/
