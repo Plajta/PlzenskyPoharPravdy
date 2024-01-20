@@ -6,7 +6,7 @@ const options = {
     maximumAge: 0,
 };
 
-
+var id;
 
 window.onload = () => {
 
@@ -87,6 +87,7 @@ function watch(pos) {
 
             marker_gps = L.marker([latitude, longitude], { draggable: false }).addTo(map);
             marker_gps.bindPopup("<b>Vaše poloha</b>").openPopup()
+            navigator.geolocation.clearWatch(id)
         }
     }
 }

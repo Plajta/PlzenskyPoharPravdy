@@ -109,7 +109,7 @@ def normalize_and_modify():
     #exit()
 
     for filename in os.listdir(img_data_path):
-        if filename == "README.txt":
+        if filename == "README.txt" and ".gitkeep":
             continue
         abs_path = os.path.join(img_data_path, filename)
         img = imread(abs_path).astype(np.uint8)
