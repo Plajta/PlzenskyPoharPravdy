@@ -58,8 +58,8 @@ function Menu() {
     return (
         <>
             <div className="menu_change_buttons">
-                <div className={!value && "menu_change_buttons menu_change_button_active"} onClick={() => factsmapChange(setValue)}>Farts</div>
-                <div className={value && "menu_change_buttons menu_change_button_active"} onClick={() => nukemapChange(setValue)}>Nukede</div>
+                <div className={!value && "menu_change_buttons menu_change_button_active"} onClick={() => factsmapChange(setValue)}>Fakty</div>
+                <div className={value && "menu_change_buttons menu_change_button_active"} onClick={() => nukemapChange(setValue)}>Zbraň</div>
             </div>
             <div className="menu">
                 
@@ -80,7 +80,7 @@ function Menu() {
                         </select>
 
                         <div>
-                            <button onClick={() => nukedeHandler(nuke_value)}>Nukede!</button>
+                            <button onClick={() => nukedeHandler(nuke_value)}>Spustit simulaci</button>
                         </div>
                     </>
                 )}
