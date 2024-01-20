@@ -42,7 +42,7 @@ class MapDataManipulator:
         self.lat_to_pix = self.GRA.shape[0] / lat_diff
         self.lon_to_pix = self.GRA.shape[1] / lon_diff
 
-    def ProcessPoI(self, longitude, latitude, ):
+    def ProcessPoI(self, longitude, latitude, radius):
         # process Point-of-Impact (where the nuke lands)       
 
         long_diff = longitude - self.czech_rep_config_data["points"][2]["lon"]

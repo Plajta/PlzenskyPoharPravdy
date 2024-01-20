@@ -105,7 +105,7 @@ def handle_nukede(data):
         emit("server_response", "no_nuke_found")
 
     #if everything is oke, we shall continue right?
-    map_manip.ProcessPoI(longitude, latitude)
+    map_manip.ProcessPoI(longitude, latitude, selected_nuke["fireball-radius"])
 
     #send nuke data to frontend #TODO add even more
     print("muzi:", data_muz)
