@@ -17,7 +17,8 @@
             "m-blast-radius": 1.67,
             "t-radiation-radius": 1.91,
             "l-blast-radius": 4.52,
-            "producer": "USA"
+            "producer": "USA",
+            "zoom": 14
         },
         {
             "name": "Fat Man",
@@ -29,7 +30,8 @@
             "m-blast-radius": 1.72,
             "t-radiation-radius": 2.21,
             "l-blast-radius": 4.59,
-            "producer": "USA"
+            "producer": "USA",
+            "zoom": 14
         },
         {
             "name": "Ivy King",
@@ -41,7 +43,8 @@
             "m-blast-radius": 3.63,
             "t-radiation-radius": 7.91,
             "l-blast-radius": 9.34,
-            "producer": "USA"
+            "producer": "USA",
+            "zoom": 151
         },
         {
             "name": "Castle Bravo",
@@ -53,7 +56,8 @@
             "m-blast-radius": 11.3,
             "l-blast-radius": 29,
             "t-radiation-radius": 34,
-            "producer": "USA"
+            "producer": "USA",
+            "zoom": 151
         },
         {
             "name": "Tsar Bomba (50Mt)",
@@ -65,7 +69,8 @@
             "m-blast-radius": 20.7,
             "l-blast-radius": 54.3,
             "t-radiation-radius": 60,
-            "producer": "Russia"
+            "producer": "Russia",
+            "zoom": 151
         },
         {
             "name": "Tsar Bomba (100Mt)",
@@ -77,7 +82,8 @@
             "m-blast-radius": 32.6,
             "l-blast-radius": 91.8,
             "t-radiation-radius": null,
-            "producer": "Russia"
+            "producer": "Russia",
+            "zoom": 151
         }
     ]
 }
