@@ -5,7 +5,8 @@
     color: wheat;
     height: 100%;
     box-sizing: border-box;
-    display: inline;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -87,4 +88,22 @@ p{
 .circlecount{
     display: inline-block;
     justify-content: space-between !important;
+}
+.rounded_button{
+    align-self: flex-end;
+    justify-content: flex-end;
+    margin: auto 30px 30px 30px;
+    background-color: #000;
+    color: #fff;
+    padding: 13px 20px;
+    border-radius: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+}
+.rounded_button:hover{
+    background-color: #fff;
+    color: #000;
+    transition: 0.3s;
 }
