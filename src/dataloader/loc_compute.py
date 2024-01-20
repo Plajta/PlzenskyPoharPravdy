@@ -48,11 +48,14 @@ class MapDataManipulator:
         print("lat", latitude)
         print("long", longitude)
 
-        long_diff = (latitude - self.czech_rep_config_data["points"][2]["lat"])
-        lat_diff = (longitude - self.czech_rep_config_data["points"][0]["lon"])
+        long_diff = abs(latitude - self.czech_rep_config_data["points"][2]["lat"])
+        lat_diff = abs(longitude - self.czech_rep_config_data["points"][0]["lon"])
 
-        x_impact = round(self.lon_to_pix * long_diff)
-        y_impact = round(self.lat_to_pix * lat_diff)
+        x_impact = round((self.lon_to_pix * long_diff) + (self.czech_rep_config_data["points"][0]["lon"] * long_diff))
+        y_impact = round((self.czech_rep_config_data["points"][2]["lat"] * lat_diff) - (self.lat_to_pix * lat_diff))
 
-        cv2.circle(self.GRA, (x_impact, y_impact), 30, 0, -1)
+        print(x_impact)
+        print(y_impact)
+
+        cv2.circle(self.GRA, (x_impact, y_impact), 100, 0, -1)
         imsave("test.tif",self.GRA)
