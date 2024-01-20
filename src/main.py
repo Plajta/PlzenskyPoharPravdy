@@ -91,6 +91,9 @@ def handle_nukede(data):
     data_muz = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='muž'", ["hodnota"])[0][0])
     data_zen = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='žena'", ["hodnota"])[0][0])
 
+    data_muz_percent = round((data_muz / data_all) * 100, 2)
+    data_zen_percent = round((data_zen / data_all) * 100, 2) 
+
     #get nuke params
     selected_nuke = None
     for nuke in nuke_config_data["nukes"]:
@@ -114,8 +117,8 @@ def handle_nukede(data):
         },
         "killed": {
             "all": data_all,
-            "women": data_zen,
-            "men": data_muz
+            "women": data_zen_percent,
+            "men": data_muz_percent
         }
     })
 
