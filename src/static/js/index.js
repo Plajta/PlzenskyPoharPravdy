@@ -54,7 +54,7 @@ const nuke_option_list = nuckes_list.map(nuke =>
   );
 function Menu() {
     const [value, setValue] = React.useState(false);
-    const [nuke_value, nuke_setValue] = React.useState("Little Boy");
+    const [nuke_value, nuke_setValue] = React.useState("LittleBoy");
     return (
         <>
             <div className="menu_change_buttons">
