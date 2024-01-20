@@ -46,7 +46,7 @@ const factsmapChange = (setValue) => {
         attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
     }).addTo(map);
     marker_gps = L.marker([latitude, longitude], { draggable: false }).addTo(map);
-    marker_gps.bindPopup("<b>Vaši poloha</b>").openPopup()
+    marker_gps.bindPopup("<b>Vaše poloha</b>").openPopup()
 }
 
 const nuke_option_list = nuckes_list.map(nuke =>
