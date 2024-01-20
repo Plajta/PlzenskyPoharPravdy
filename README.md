@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/doc/PlzenskyPoharPravdyLogo.png" alt="PPP logo"/>
+  <img src="/doc/PlzenskyPoharPravdyLogo.pntg" alt="PPP logo"/>
 </p>
 
 
