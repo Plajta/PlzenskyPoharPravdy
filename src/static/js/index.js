@@ -111,7 +111,13 @@ const nuke_option_list = nuckes_list.map(nuke =>
 function Menu() {
     const [value, setValue] = React.useState(false);
     const [nuke_value, nuke_setValue] = React.useState("LittleBoy");
-
+    const [textdesc, setDescText] = React.useState([]);
+    React.useEffect(() => {
+        socket.on("explode_nuke", (data) => {
+            console.log(data);
+            setDescText(textdesc => [data["lidi"]])
+        })
+    })
     return (
         <>
             <div className="menu_change_buttons">
@@ -165,6 +171,7 @@ function Menu() {
                                 <div>Tepelné záření</div>
                             </div>
                         </div>
+                        <div>{textdesc}</div>
                         <div>
                             <button onClick={() => nukedeHandler(nuke_value)}>Spustit simulaci</button>
                         </div>

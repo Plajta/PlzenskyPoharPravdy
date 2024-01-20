@@ -86,17 +86,14 @@ def handle_nukede(data):
     map_manip.ProcessPoI(longitude, latitude)
 
     #send nuke data to frontend #TODO add even more
-    print(selected_nuke["fireball-radius"])
+    print("muzi:", data_muz)
     emit("explode_nuke", {
+        # FIXME: !!!! Dane tady data
+        "lidi":"help me to die",
         "nuke_data": selected_nuke,
         "coords": {
             "lat": latitude,
             "long": longitude
-        },
-        "killed": {
-            "all": data_all,
-            "women": data_zen,
-            "men": data_muz
         }
     })
 
