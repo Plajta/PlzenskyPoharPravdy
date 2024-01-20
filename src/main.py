@@ -6,21 +6,23 @@ import requests
 
 #variables
 nuke_config_path = os.getcwd()[:os.getcwd().index("PlzenskyPoharPravdy") + len("PlzenskyPoharPravdy")] + "/data/other_data/nuke_config.json"
-nukes = []
+
+#loading nukes
+nuke_config = open(nuke_config_path)
+nuke_config_data = json.load(nuke_config)
 
 app = Flask(__name__)
 socketio = SocketIO(app)
 
 @app.route("/")
 def index():
-    #loading nukes
-    nuke_config = open(nuke_config_path)
-    nuke_config_data = json.load(nuke_config)
+    nukes = []
+
     for nuke in nuke_config_data["nukes"]:
         nukes.append({
             "name": nuke["name"],
             "energy": str(nuke["energy"]) + "kt",
-            "value": nuke["name"].replace(" ", "")
+            "value": nuke["value"]
         })
 
     print(nukes)
@@ -46,6 +48,18 @@ def handle_nukede(data):
         if y["type"] == "regional.municipality":
             print(y["name"])
 
+    #get nuke params
+    selected_nuke = None
+    for nuke in nuke_config_data["nukes"]:
+        if nuke["value"] == choosed_nuke:
+            selected_nuke = nuke
+            print(selected_nuke["fireball-radius"])
+            print("found nuke!")
+    if selected_nuke == None:
+        print("no nuke found!")
+        emit("server_response", "no_nuke_found")
+
+    
 
 if __name__ == '__main__':
     socketio.run(app, allow_unsafe_werkzeug=True)

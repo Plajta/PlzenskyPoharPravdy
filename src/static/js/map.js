@@ -86,7 +86,7 @@ function watch(pos) {
             // add_circle([latitude, longitude])
 
             marker_gps = L.marker([latitude, longitude], { draggable: false }).addTo(map);
-            marker_gps.bindPopup("<b>Vaši poloha</b>").openPopup()
+            marker_gps.bindPopup("<b>Vaše poloha</b>").openPopup()
         }
     }
 }
