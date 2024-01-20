@@ -80,3 +80,7 @@ input::placeholder{
     gap: 10px;
     padding: 0 10px;
 }
+.circlecount{
+    display: inline-block;
+    justify-content: space-between !important;
+}

@@ -132,29 +132,35 @@ function Menu() {
                         <select value={nuke_value} onChange={e => nuke_setValue(e.target.value)} className="typetext">
                             {nuke_option_list}
                         </select>
-                        <div className="circletitle">
-                            <div Style="color:red">■</div>
-                            <div>hello</div>
+                        <div className="circlecount">
+                            <div className="circletitle">
+                                <div Style="color:red">■</div>
+                                <div>hello</div>
+                            </div>
+                            <div className="circletitle">
+                                <div Style="color:green">■</div>
+                                <div>hello</div>
+                            </div>
                         </div>
-                        <div className="circletitle">
-                            <div Style="color:#ff8800">■</div>
-                            <div>hello</div>
+                        <div className="circlecount">
+                            <div className="circletitle">
+                                <div Style="color:#ff8800">■</div>
+                                <div>hello</div>
+                            </div>
+                            <div className="circletitle">
+                                <div Style="color:#ffe100">■</div>
+                                <div>hello</div>
+                            </div>
                         </div>
-                        <div className="circletitle">
-                            <div Style="color:#42f56c">■</div>
-                            <div>hello</div>
-                        </div>
-                        <div className="circletitle">
-                            <div Style="color:green">■</div>
-                            <div>hello</div>
-                        </div>
-                        <div className="circletitle">
-                            <div Style="color:#ffe100">■</div>
-                            <div>hello</div>
-                        </div>
-                        <div className="circletitle">
-                            <div Style="color:#595959">■</div>
-                            <div>hello</div>
+                        <div className="circlecount">
+                            <div className="circletitle">
+                                <div Style="color:#42f56c">■</div>
+                                <div>hello</div>
+                            </div>
+                            <div className="circletitle">
+                                <div Style="color:#595959">■</div>
+                                <div>hello</div>
+                            </div>
                         </div>
                         <div>
                             <button onClick={() => nukedeHandler(nuke_value)}>Spustit simulaci</button>
