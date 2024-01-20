@@ -57,8 +57,41 @@ for filename in os.listdir(img_data_path):
 """
 
 #
-# TOO BIG FUCKING IMAGE, WHAT THE FUCK AM I SUPPOSED TO DO WITH THIS TODO
+# Get image cropping data
 #
+img_path = os.path.join(img_data_path, "TCD_2018_010m_CR.tif")
+img = imageio.imread(img_path).astype(np.uint8)
+
+new_pix = 1000
+r = new_pix / img.shape[1]
+dim = (new_pix, int(img.shape[0] * r))
+
+resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+
+threshold_value = 150
+binary_image = np.where(resized < threshold_value, 0, 255).astype(np.uint8)
+
+coordinates = np.column_stack(np.where(binary_image == 0))
+leftmost = tuple(coordinates[0])[0]
+rightmost = tuple(coordinates[-1])[0]
+topmost = tuple(np.min(coordinates, axis=0))[1]
+botmost = tuple(np.max(coordinates, axis=0))[1]
+
+cropped_img = img[leftmost:rightmost, topmost:botmost]
+print(cropped_img.shape)
+
+#TODO: does not seem to work, showing too small pixels
+threshold_value = 150
+cropped_img = np.where(cropped_img < threshold_value, 0, 255).astype(np.uint8)
+
+print(cropped_img.dtype)
+print(img.dtype)
+
+imsave("test.tif", np.array(cropped_img).astype(np.uint8))
+exit()
+
+cv2.imshow("test", cropped_img)
+cv2.waitKey(0)
 
 for filename in os.listdir(img_data_path):
     if filename == ".gitkeep":
@@ -66,15 +99,14 @@ for filename in os.listdir(img_data_path):
     abs_path = os.path.join(img_data_path, filename)
     img = imageio.imread(abs_path).astype(np.uint8)
 
-    img[img == 250] = 255
-    img[img == 1] = 0
+    img[img >= 250] = 255
+    img[img < 150] = 0
 
-    leftmost_pixel = None
+    new_pix = 1000
+    r = new_pix / img.shape[1]
+    dim = (new_pix, int(img.shape[0] * r))
 
-    black_pixels = cv2.findNonZero(img)
+    resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
 
-    if black_pixels is not None and len(black_pixels) > 0:
-        leftmost_pixel = tuple(black_pixels[0][0])
-        print("Coordinates of the leftmost black pixel:", leftmost_pixel)
-    else:
-        print("No black pixels found in the image.")
+    cv2.imshow("test", resized)
+    cv2.waitKey(0)
