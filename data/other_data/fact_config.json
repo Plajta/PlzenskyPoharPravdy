@@ -27,7 +27,7 @@
             }
         ],
         "uzemi_col": "vuzemi_txt",
-        "template": "Vědeli jste že v {obec} se za rok {rok} vzalo {snatky} a rozvedlo {rozvody} párů?"
+        "template": "Vědeli jste, že v {obec} se za rok {rok} vzalo {snatky} a rozvedlo {rozvody} párů?"
     },
     "zemreli": {
         "columns": [
@@ -45,7 +45,7 @@
             }
         ],
         "uzemi_col": "vuzemi_txt",
-        "template": "Vědeli jste že v {obec} za rok {rok} zemřelo {smrti} lidi."
+        "template": "Vědeli jste, že v {obec} za rok {rok} zemřelo {smrti} lidi."
     },
     "pristehovali": {
         "columns": [
@@ -63,7 +63,7 @@
             }
         ],
         "uzemi_col": "vuzemi_txt",
-        "template": "Vědeli jste že v roce {rok} se do {obec} pristěhovalo {pristehovalo} lidi?"
+        "template": "Vědeli jste, že v roce {rok} se do {obec} pristěhovalo {pristehovalo} lidi?"
     },
     "zumpa": {
         "columns": [
@@ -81,6 +81,78 @@
             }
         ],
         "uzemi_col": "uzemi_txt",
-        "template": "Vědeli jste že podle statistik z roku {rok} je v {obec} {pocet_zump} domů s odpadem vedoucím do žumpy?"
+        "template": "Vědeli jste, že podle statistik z roku {rok} je v {obec} {pocet_zump} domů s odpadem vedoucím do žumpy?"
+    },
+    "bezkan": {
+        "columns": [
+            {
+                "column": "odpad_kod",
+                "value": 40,
+                "output": [
+                    "hodnota",
+                    "sldb_rok"
+                ],
+                "var_name": [
+                    "pocet_bezkan",
+                    "rok"
+                ]
+            }
+        ],
+        "uzemi_col": "uzemi_txt",
+        "template": "Vědeli jste, že podle statistik z roku {rok} je v {obec} {pocet_bezkan} domů bez kanalizace?"
+    },
+    "bezkuch": {
+        "columns": [
+            {
+                "column": "kuchyne_kod",
+                "value": 12,
+                "output": [
+                    "hodnota",
+                    "sldb_rok"
+                ],
+                "var_name": [
+                    "pocet_bezkuch",
+                    "rok"
+                ]
+            }
+        ],
+        "uzemi_col": "uzemi_txt",
+        "template": "Vědeli jste, že podle statistik z roku {rok} je v {obec} {pocet_bezkuch} domů bez kuchyně nebo kuchyňského koutu?"
+    },
+    "prum_muz": {
+        "columns": [
+            {
+                "column": "pohlavi_kod",
+                "value": 1,
+                "output": [
+                    "hodnota",
+                    "sldb_rok"
+                ],
+                "var_name": [
+                    "prum_vek",
+                    "rok"
+                ]
+            }
+        ],
+        "uzemi_col": "uzemi_txt",
+        "template": "Vědeli jste, že podle statistik z roku {rok} je průměrnému muži v {obec} {prum_vek} let?"
+    },
+    "prum_zena": {
+        "columns": [
+            {
+                "column": "pohlavi_kod",
+                "value": 2,
+                "output": [
+                    "hodnota",
+                    "sldb_rok"
+                ],
+                "var_name": [
+                    "prum_vek",
+                    "rok"
+                ]
+            }
+        ],
+        "uzemi_col": "uzemi_txt",
+        "template": "Vědeli jste, že podle statistik z roku {rok} je průměrné ženě v {obec} {prum_vek} let?"
     }
 }
