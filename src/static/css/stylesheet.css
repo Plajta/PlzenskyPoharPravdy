@@ -43,7 +43,7 @@ input::placeholder{
     display: flex;
     flex-direction: row;
     background-color: #292929;
-    margin: 0 0px 30px 0px;
+    margin: 0;
     border-radius: 0 10px 0 0;
     
 }
@@ -74,11 +74,15 @@ input::placeholder{
     transition: 0.4s ;
     
 }
+p{
+    font-size: 13px;
+}
 .circletitle{
     display: inline-block;
     justify-content: start !important;
     gap: 10px;
     padding: 0 10px;
+    font-size: 13px;
 }
 .circlecount{
     display: inline-block;

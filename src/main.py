@@ -82,7 +82,7 @@ def handle_get_city(data):
     print(city)
     emit("send_city", city)
 
-    
+
 @socketio.on('nukede')
 def handle_nukede(data):
     print('received nukede message:', data)
@@ -125,14 +125,12 @@ def handle_nukede(data):
     grassland, concrete, forest, water = map_manip.ProcessPoI(longitude, latitude, selected_nuke["fireball-radius"])
 
     #send nuke data to frontend #TODO add even more
-    print("muzi:", data_muz)
+    print("geo:", grassland,concrete,forest,water)
     emit("explode_nuke", {
         "data": {
             "all_peope": data_all,
             "women": data_zen_percent,
-            "men": data_muz_percent 
-        },
-        "geo_data": {
+            "men": data_muz_percent,
             "grass": f"{grassland} km\u00b2",
             "concrete": f"{concrete} km\u00b2",
             "forest": f"{forest} km\u00b2",

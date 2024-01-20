@@ -194,6 +194,10 @@ function Menu() {
                                 <p>Víte, že jste pravě zabili {textdesc["all_peope"]} lidí?</p>
                                 <p>{textdesc["women"]}% žen</p>
                                 <p>{textdesc["men"]}% mužů</p>
+                                <p>{textdesc["grass"]} grass</p>
+                                <p>{textdesc["concrete"]} concrete</p>
+                                <p>{textdesc["forest"]} forest</p>
+                                <p>{textdesc["water"]} water</p>
                             </>
                         )
                         }
