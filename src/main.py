@@ -68,7 +68,6 @@ def handle_nukede(data):
     for nuke in nuke_config_data["nukes"]:
         if nuke["value"] == choosed_nuke:
             selected_nuke = nuke
-            print(selected_nuke["fireball-radius"])
             print("found nuke!")
     if selected_nuke == None:
         print("no nuke found!")
@@ -76,6 +75,16 @@ def handle_nukede(data):
 
     #if everything is oke, we shall continue right?
     map_manip.ProcessPoI(longitude, latitude)
+
+    #send nuke data to frontend #TODO add even more
+    emit("nuke_data", {
+        "fireball-radius": selected_nuke["fireball-radius"],
+        "radiation-radius": selected_nuke["radiation-radius"],
+        "coords": {
+            "lat": latitude,
+            "long": longitude
+        }
+    })
 
     
 
