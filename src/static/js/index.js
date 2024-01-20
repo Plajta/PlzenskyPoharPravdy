@@ -1,6 +1,7 @@
 
 var socket = io();
-function nukedeHandler(nuke_value){
+function nukedeHandler(nuke_value, setDescText){
+    setDescText("")
     socket.emit('nukede', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
 
 }
@@ -114,8 +115,8 @@ function Menu() {
     const [textdesc, setDescText] = React.useState([]);
     React.useEffect(() => {
         socket.on("explode_nuke", (data) => {
-            console.log(data);
-            setDescText(textdesc => [data["lidi"]])
+            console.log(data["data"]["all_peope"]);
+            setDescText(data["data"])
         })
     })
     return (
@@ -171,9 +172,17 @@ function Menu() {
                                 <div>Tepelné záření</div>
                             </div>
                         </div>
-                        <div>{textdesc}</div>
+                        {textdesc != "" && (
+                            <>
+                                <p>víte že jste pravě zabili {textdesc["all_peope"]} lidi!</p>
+                                <p>žen {textdesc["women"]} %</p>
+                                <p>muž {textdesc["men"]} %</p>
+                            </>
+                        )
+                        }
+
                         <div>
-                            <button onClick={() => nukedeHandler(nuke_value)}>Spustit simulaci</button>
+                            <button onClick={() => nukedeHandler(nuke_value, setDescText)}>Spustit simulaci</button>
                         </div>
                     </>
                 )}
