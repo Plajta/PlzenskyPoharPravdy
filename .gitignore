@@ -1,6 +1,9 @@
 .idea
 env
-data/*
+
+data/img_data/*
+data/gen_data/*
+
 !data/img_data/.gitkeep
 !data/gen_data/.gitkeep
 !data/other_data/.gitkeep
