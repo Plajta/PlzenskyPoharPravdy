@@ -8,6 +8,7 @@ import json
 #variables
 img_data_path = os.getcwd()[:os.getcwd().index("PlzenskyPoharPravdy") + len("PlzenskyPoharPravdy")] + "/data/img_data/"
 czech_rep_config_path = os.getcwd()[:os.getcwd().index("PlzenskyPoharPravdy") + len("PlzenskyPoharPravdy")] + "/data/other_data/czech_rep_config.json"
+pix_to_m = 100 #taken from data.gov.cz
 
 class MapDataManipulator:
     #
@@ -54,5 +55,77 @@ class MapDataManipulator:
         print(x_impact)
         print(y_impact)
 
-        cv2.circle(self.GRA, (x_impact, y_impact), 100, 0, -1)
-        imsave("test.tif",self.GRA)
+        radius = radius * 1000
+        pix_radius = round(radius / 100)
+
+        PAD = 500
+
+        crop_x1 = (x_impact - pix_radius) - PAD
+        crop_x2 = (x_impact + pix_radius) + PAD
+
+        crop_y1 = (y_impact - pix_radius) - PAD
+        crop_y2 = (y_impact + pix_radius) + PAD
+        
+        #create a mask
+        mask_image = np.full(self.GRA[crop_y1:crop_y2, crop_x1: crop_x2].shape, 255, dtype=np.uint8)
+        cv2.circle(mask_image, (int(x_impact - crop_x1), int(y_impact - crop_y1)), pix_radius, 0, -1)
+
+        #mask every data image
+        #GRA - Grasslands
+        result_GRA = cv2.bitwise_and(self.GRA[crop_y1:crop_y2, crop_x1: crop_x2], self.GRA[crop_y1:crop_y2, crop_x1: crop_x2], mask=mask_image) * 255
+
+        #IBU - Concrete places
+        result_IBU = cv2.bitwise_and(self.IBU[crop_y1:crop_y2, crop_x1: crop_x2], self.IBU[crop_y1:crop_y2, crop_x1: crop_x2], mask=mask_image) * 255
+
+        #TCD - Forests
+        result_TCD = cv2.bitwise_and(self.TCD[crop_y1:crop_y2, crop_x1: crop_x2], self.TCD[crop_y1:crop_y2, crop_x1: crop_x2], mask=mask_image) * 255
+
+        #WAW - Water
+        result_WAW = cv2.bitwise_and(self.WAW[crop_y1:crop_y2, crop_x1: crop_x2], self.WAW[crop_y1:crop_y2, crop_x1: crop_x2], mask=mask_image) * 255
+
+        #TODO masking does not work that well
+
+        contours, _ = cv2.findContours(result_GRA, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        max_contour = max(contours, key=cv2.contourArea)
+        contours_GRA = [cnt for cnt in contours if cnt is not max_contour]
+
+        contours, _ = cv2.findContours(result_IBU, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        max_contour = max(contours, key=cv2.contourArea)
+        contours_IBU = [cnt for cnt in contours if cnt is not max_contour]
+
+        contours, _ = cv2.findContours(result_TCD, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        max_contour = max(contours, key=cv2.contourArea)
+        contours_TCD = [cnt for cnt in contours if cnt is not max_contour]
+
+        contours, _ = cv2.findContours(result_WAW, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        max_contour = max(contours, key=cv2.contourArea)
+        contours_WAW = [cnt for cnt in contours if cnt is not max_contour]
+
+        area_all_GRA = 0
+        area_all_IBU = 0
+        area_all_TCD = 0
+        area_all_WAW = 0
+
+        for contour in contours_GRA:
+            contour_area = round(cv2.contourArea(contour))
+            area_all_GRA += contour_area
+
+        for contour in contours_IBU:
+            contour_area = round(cv2.contourArea(contour))
+            area_all_IBU += contour_area
+
+        for contour in contours_TCD:
+            contour_area = round(cv2.contourArea(contour))
+            area_all_TCD += contour_area
+
+        for contour in contours_WAW:
+            contour_area = round(cv2.contourArea(contour))
+            area_all_WAW += contour_area
+
+        #calucate are and convert to km squared
+        area_all_GRA = (area_all_GRA * 100 * 100) / 1000000
+        area_all_IBU = (area_all_IBU * 100 * 100) / 1000000
+        area_all_TCD = (area_all_TCD * 100 * 100) / 1000000
+        area_all_WAW = (area_all_WAW * 100 * 100) / 1000000
+
+        return area_all_GRA, area_all_IBU, area_all_TCD, area_all_WAW

@@ -122,15 +122,21 @@ def handle_nukede(data):
         emit("server_response", "no_nuke_found")
 
     #if everything is oke, we shall continue right?
-    map_manip.ProcessPoI(longitude, latitude, selected_nuke["fireball-radius"])
+    grassland, concrete, forest, water = map_manip.ProcessPoI(longitude, latitude, selected_nuke["fireball-radius"])
 
     #send nuke data to frontend #TODO add even more
     print("muzi:", data_muz)
     emit("explode_nuke", {
-        "data":{
+        "data": {
             "all_peope": data_all,
             "women": data_zen_percent,
             "men": data_muz_percent 
+        },
+        "geo_data": {
+            "grass": f"{grassland} km\u00b2",
+            "concrete": f"{concrete} km\u00b2",
+            "forest": f"{forest} km\u00b2",
+            "water": f"{water} km\u00b2"
         },
         "nuke_data": selected_nuke,
         "coords": {
