@@ -63,7 +63,7 @@
             "producer": "Russia"
         },
         {
-            "name": "Tsar Bomba (50Mt)",
+            "name": "Tsar Bomba (100Mt)",
             "energy": 100000,
             "radiation-radius": null,
             "fireball-radius": 6.71,

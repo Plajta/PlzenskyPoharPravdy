@@ -41,7 +41,10 @@ def handle_nukede(data):
                      params={"lon": longitude, "lat": latitude},
                      headers={"accept": "application/json",
                               "X-Mapy-Api-Key": "YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA"})
-    print(x.text)
+
+    for y in x.json()["items"][0]["regionalStructure"]:
+        if y["type"] == "regional.municipality":
+            print(y["name"])
 
 
 if __name__ == '__main__':
