@@ -23,7 +23,7 @@ class Dataloader:
         csv_names = [os.path.join(path,file) for file in file_list if ".csv" in file]
         with Pool(processes=self.proc_count) as pool:
             for filename, csv in pool.map(loader, csv_names):
-                self.csv_files[filename] = csv
+                self.csv_files[os.path.basename(filename)] = csv
         print(self.csv_files.keys())
     
     def query(self, query, columns=[], filename=None):
