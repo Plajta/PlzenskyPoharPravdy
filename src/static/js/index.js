@@ -150,7 +150,7 @@ function Menu() {
                         {/* <input type="text" className="typetext" id="dataset" name="dataset"/> */}
                         <p>{textmesage}</p>
                         <div>
-                            <button onClick={generateHandler}>generate</button>
+                            <button onClick={generateHandler}>Generovat</button>
                         </div>
                     </>
                 )}
