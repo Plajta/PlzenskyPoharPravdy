@@ -37,6 +37,7 @@ def index():
 
     print(nukes)
     return render_template('index.html', nuke_data=nukes)
+    
 
 @socketio.on('generate')
 def handle_generate(data):
@@ -77,9 +78,9 @@ def handle_nukede(data):
     map_manip.ProcessPoI(longitude, latitude)
 
     #send nuke data to frontend #TODO add even more
-    emit("nuke_data", {
-        "fireball-radius": selected_nuke["fireball-radius"],
-        "radiation-radius": selected_nuke["radiation-radius"],
+    print(selected_nuke["fireball-radius"])
+    emit("explode_nuke", {
+        "nuke_data": selected_nuke,
         "coords": {
             "lat": latitude,
             "long": longitude

@@ -5,6 +5,60 @@ function nukedeHandler(nuke_value){
 
 }
 
+
+
+
+socket.on('explode_nuke', function(nuke_data){
+    map.remove()
+    map = L.map('map').setView({lng: bomb_longitude, lat: bomb_latitude}, 14);
+
+    L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
+        minZoom: 0,
+        maxZoom: 19,
+        attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
+    }).addTo(map);
+
+    
+    L.circle([bomb_latitude, bomb_longitude], {
+        color: '#3ef7b3',
+        fillColor: '#3ef7b3',
+        fillOpacity: 0.2,
+        radius: nuke_data["nuke_data"]["l-blast-radius"]*1000
+    }).addTo(map);
+    L.circle([bomb_latitude, bomb_longitude], {
+        color: '#595959',
+        fillColor: '#595959',
+        fillOpacity: 0.2,
+        radius: nuke_data["nuke_data"]["t-radiation-radius"]*1000
+    }).addTo(map);
+    L.circle([bomb_latitude, bomb_longitude], {
+        color: '#ffe100',
+        fillColor: '#ffe100',
+        fillOpacity: 0.2,
+        radius: nuke_data["nuke_data"]["m-blast-radius"]*1000
+    }).addTo(map);
+    L.circle([bomb_latitude, bomb_longitude], {
+        color: 'green',
+        fillColor: '#42f56c',
+        fillOpacity: 0.2,
+        radius: nuke_data["nuke_data"]["radiation-radius"]*1000
+    }).addTo(map);
+    L.circle([bomb_latitude, bomb_longitude], {
+        color: '#ff8800',
+        fillColor: '#ff8800',
+        fillOpacity: 0.2,
+        radius: nuke_data["nuke_data"]["h-blast-radius"]*1000
+    }).addTo(map);
+    L.circle([bomb_latitude, bomb_longitude], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.2,
+        radius: nuke_data["nuke_data"]["fireball-radius"]*1000
+    }).addTo(map);
+    
+}
+)
+
 const nukemapChange = (setValue) => {
     setValue(true)
     console.log(bomb_longitude)
@@ -54,7 +108,7 @@ const nuke_option_list = nuckes_list.map(nuke =>
   );
 function Menu() {
     const [value, setValue] = React.useState(false);
-    const [nuke_value, nuke_setValue] = React.useState("Little Boy");
+    const [nuke_value, nuke_setValue] = React.useState("LittleBoy");
     return (
         <>
             <div className="menu_change_buttons">
