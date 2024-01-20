@@ -41,6 +41,8 @@ def handle_nukede(data):
                      params={"lon": longitude, "lat": latitude},
                      headers={"accept": "application/json",
                               "X-Mapy-Api-Key": "YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA"})
+    print(x.text)
+
 
 if __name__ == '__main__':
     socketio.run(app, allow_unsafe_werkzeug=True)
