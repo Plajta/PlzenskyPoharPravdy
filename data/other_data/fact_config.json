@@ -1,5 +1,6 @@
 {
     "svatby_a_rozvody": {
+        "filepath": "data/csv_data/pohyb2022.csv",
         "columns": [
             {
                 "column": "vuk",
@@ -30,6 +31,7 @@
         "template": "Vědeli jste, že v {obec} se za rok {rok} vzalo {snatky} a rozvedlo {rozvody} párů?"
     },
     "zemreli": {
+        "filepath": "data/csv_data/pohyb2022.csv",
         "columns": [
             {
                 "column": "vuk",
@@ -48,6 +50,7 @@
         "template": "Vědeli jste, že v {obec} za rok {rok} zemřelo {smrti} lidi."
     },
     "pristehovali": {
+        "filepath": "data/csv_data/pohyb2022.csv",
         "columns": [
             {
                 "column": "vuk",
@@ -66,6 +69,7 @@
         "template": "Vědeli jste, že v roce {rok} se do {obec} pristěhovalo {pristehovalo} lidi?"
     },
     "zumpa": {
+        "filepath": "data/csv_data/kanalizace.csv",
         "columns": [
             {
                 "column": "odpad_kod",
