@@ -1,4 +1,3 @@
-from dataloader import Dataloader
 import random
 import json
 
@@ -32,5 +31,6 @@ def generate_fact(dataload, obec):
     
 
 if __name__ == "__main__":
+    from dataloader import Dataloader
     dataload = Dataloader("data/csv_data")
     print(generate_fact(dataload, "Plzeň"))

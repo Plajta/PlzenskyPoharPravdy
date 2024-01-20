@@ -5,6 +5,7 @@ import os
 import requests
 from dataloader.dataloader import Dataloader
 import numpy as np
+from dataloader.random_fact import generate_fact
 
 
 #own modules
@@ -45,7 +46,24 @@ def index():
 
 @socketio.on('generate')
 def handle_generate(data):
-    print('received message:', data)
+    #generate random fact in current region
+
+    #city info
+    city = ""
+    try:
+        x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
+                        params={"lon": data["lng"], "lat": data["lat"]},
+                        headers={"accept": "application/json",
+                                "X-Mapy-Api-Key": "YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA"})
+
+        for y in x.json()["items"][0]["regionalStructure"]:
+            if y["type"] == "regional.municipality":
+                city = y["name"]
+    except Exception as e:
+        print(e)
+
+    fact_message = generate_fact(data_loader, city)
+    emit("send_random_fact", fact_message)
 
 
 @socketio.on('nukede')
