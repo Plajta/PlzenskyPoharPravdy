@@ -1,0 +1,86 @@
+{
+    "svatby_a_rozvody": {
+        "columns": [
+            {
+                "column": "vuk",
+                "value": "\"DEM0013\"",
+                "output": [
+                    "hodnota",
+                    "rok"
+                ],
+                "var_name": [
+                    "snatky",
+                    "rok"
+                ]
+            },
+            {
+                "column": "vuk",
+                "value": "\"DEM0014\"",
+                "output": [
+                    "hodnota",
+                    "rok"
+                ],
+                "var_name": [
+                    "rozvody",
+                    "rok"
+                ]
+            }
+        ],
+        "uzemi_col": "vuzemi_txt",
+        "template": "Vědeli jste že v {obec} se za rok {rok} vzalo {snatky} a rozvedlo {rozvody} párů?"
+    },
+    "zemreli": {
+        "columns": [
+            {
+                "column": "vuk",
+                "value": "\"DEM0008\"",
+                "output": [
+                    "hodnota",
+                    "rok"
+                ],
+                "var_name": [
+                    "smrti",
+                    "rok"
+                ]
+            }
+        ],
+        "uzemi_col": "vuzemi_txt",
+        "template": "Vědeli jste že v {obec} za rok {rok} zemřelo {zemrelo} lidi."
+    },
+    "pristehovali": {
+        "columns": [
+            {
+                "column": "vuk",
+                "value": "\"DEM0009\"",
+                "output": [
+                    "hodnota",
+                    "rok"
+                ],
+                "var_name": [
+                    "pristehovalo",
+                    "rok"
+                ]
+            }
+        ],
+        "uzemi_col": "vuzemi_txt",
+        "template": "Vědeli jste že v roce {rok} se do {obec} pristěhovalo {pristehovalo} lidi?"
+    },
+    "zumpa": {
+        "columns": [
+            {
+                "column": "odpad_kod",
+                "value": 20,
+                "output": [
+                    "hodnota",
+                    "sldb_rok"
+                ],
+                "var_name": [
+                    "pocet_zump",
+                    "rok"
+                ]
+            }
+        ],
+        "uzemi_col": "uzemi_txt",
+        "template": "Vědeli jste že podle statistik z roku {rok} je v {obec} {pocet_zump} domů s odpadem vedoucím do žumpy?"
+    }
+}
