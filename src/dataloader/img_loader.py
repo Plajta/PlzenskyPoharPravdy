@@ -104,16 +104,9 @@ rightmost = round((np_cnt_data[:, 1].max() / resized.shape[0]) * img.shape[0])
 topmost = round((np_cnt_data[:, 2].min() / resized.shape[1]) * img.shape[1])
 botmost = round((np_cnt_data[:, 3].max() / resized.shape[1]) * img.shape[1])
 
-print(leftmost)
-print(rightmost)
-print(topmost)
-print(botmost)
-
-cropped_img = img[topmost:botmost, leftmost:rightmost]
-
-imsave("test.tif", cropped_img)
-
-exit()
+#cropped_img = img[topmost:botmost, leftmost:rightmost]
+#imsave("test.tif", cropped_img)
+#exit()
 
 for filename in os.listdir(img_data_path):
     if filename == ".gitkeep":
@@ -121,14 +114,5 @@ for filename in os.listdir(img_data_path):
     abs_path = os.path.join(img_data_path, filename)
     img = imageio.imread(abs_path).astype(np.uint8)
 
-    img[img >= 250] = 255
-    img[img < 150] = 0
-
-    new_pix = 1000
-    r = new_pix / img.shape[1]
-    dim = (new_pix, int(img.shape[0] * r))
-
-    resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
-
-    cv2.imshow("test", resized)
-    cv2.waitKey(0)
+    cropped_img = img[topmost:botmost, leftmost:rightmost]
+    imsave(abs_path.replace(".tif", "_mod.tif"), cropped_img)
