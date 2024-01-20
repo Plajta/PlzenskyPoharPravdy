@@ -3,12 +3,15 @@ from flask_socketio import SocketIO, emit
 import json
 import os
 import requests
+from dataloader.dataloader import Dataloader
+
 
 #own modules
 from dataloader.loc_compute import MapDataManipulator
 
 #variables
 nuke_config_path = os.getcwd()[:os.getcwd().index("PlzenskyPoharPravdy") + len("PlzenskyPoharPravdy")] + "/data/other_data/nuke_config.json"
+data_loader = Dataloader("data/csv_data/")
 
 #loading nukes
 nuke_config = open(nuke_config_path)
@@ -52,6 +55,7 @@ def handle_nukede(data):
     choosed_nuke = data["choosed_nuke"]
 
     #city info
+    city = ""
     try:
         x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
                         params={"lon": longitude, "lat": latitude},
@@ -60,9 +64,13 @@ def handle_nukede(data):
 
         for y in x.json()["items"][0]["regionalStructure"]:
             if y["type"] == "regional.municipality":
-                print(y["name"])
+                city = y["name"]
     except Exception as e:
         print(e)
+
+    data_all = data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt.isnull()", ["hodnota"])[0][0]
+    data_muz = data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='muž'", ["hodnota"])[0][0]
+    data_zen = data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='žena'", ["hodnota"])[0][0]
 
     #get nuke params
     selected_nuke = None
@@ -84,6 +92,11 @@ def handle_nukede(data):
         "coords": {
             "lat": latitude,
             "long": longitude
+        },
+        "killed": {
+            "all": data_all,
+            "women": data_zen,
+            "men": data_muz
         }
     })
 
