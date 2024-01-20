@@ -2,8 +2,9 @@
 env
 src/dataloader/__pycache__/
 
-data/img_data/*
-data/gen_data/*
+data/img_data/
+data/gen_data/
+data/csv_data/
 
 !data/img_data/.gitkeep
 !data/img_data/README.txt
