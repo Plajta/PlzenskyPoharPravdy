@@ -4,7 +4,9 @@ function nukedeHandler(nuke_value){
     socket.emit('nukede', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
 
 }
-
+function generateHandler(){
+    socket.emit('generate', {lat:marker_gps.getLatLng().lat, lng:marker_gps.getLatLng().lng});
+}
 
 
 
@@ -109,6 +111,7 @@ const nuke_option_list = nuckes_list.map(nuke =>
 function Menu() {
     const [value, setValue] = React.useState(false);
     const [nuke_value, nuke_setValue] = React.useState("LittleBoy");
+
     return (
         <>
             <div className="menu_change_buttons">
@@ -123,7 +126,7 @@ function Menu() {
                     
                         <input type="text" className="typetext" id="dataset" name="dataset"/>
                         <div>
-                            <button>generate</button>
+                            <button onClick={generateHandler}>generate</button>
                         </div>
                     </>
                 )}
