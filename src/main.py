@@ -110,8 +110,11 @@ def handle_nukede(data):
     #send nuke data to frontend #TODO add even more
     print("muzi:", data_muz)
     emit("explode_nuke", {
-        # FIXME: !!!! Dane tady data
-        "lidi":"help me to die",
+        "data":{
+            "all_peope": data_all,
+            "women": data_zen_percent,
+            "men": data_muz_percent 
+        },
         "nuke_data": selected_nuke,
         "coords": {
             "lat": latitude,
