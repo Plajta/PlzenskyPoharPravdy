@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 import json
 import os
+import requests
 
 #variables
 nuke_config_path = os.getcwd()[:os.getcwd().index("PlzenskyPoharPravdy") + len("PlzenskyPoharPravdy")] + "/data/other_data/nuke_config.json"
@@ -30,6 +31,10 @@ def handle_message(data):
     print('received message:', data)
     latitude = data["lat"]
     longitude = data["lng"]
+    x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
+                     params={"lon": longitude, "lat": latitude},
+                     headers={"accept": "application/json",
+                              "X-Mapy-Api-Key": "YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA"})
     
 
 if __name__ == '__main__':
