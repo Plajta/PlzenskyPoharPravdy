@@ -65,7 +65,24 @@ def handle_generate(data):
     fact_message = generate_fact(data_loader, city)
     emit("send_random_fact", fact_message)
 
+@socketio.on('get_city')
+def handle_get_city(data):
+    city = ""
+    try:
+        x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
+                        params={"lon": data["lng"], "lat": data["lat"]},
+                        headers={"accept": "application/json",
+                                "X-Mapy-Api-Key": "YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA"})
 
+        for y in x.json()["items"][0]["regionalStructure"]:
+            if y["type"] == "regional.municipality":
+                city = y["name"]
+    except Exception as e:
+        print(e)
+    print(city)
+    emit("send_city", city)
+
+    
 @socketio.on('nukede')
 def handle_nukede(data):
     print('received nukede message:', data)

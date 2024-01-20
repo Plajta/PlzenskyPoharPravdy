@@ -1,5 +1,5 @@
 
-var socket = io();
+
 function nukedeHandler(nuke_value, setDescText){
     setDescText("")
     socket.emit('nukede', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
@@ -102,8 +102,11 @@ const factsmapChange = (setValue) => {
         maxZoom: 19,
         attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
     }).addTo(map);
-    marker_gps = L.marker([latitude, longitude], { draggable: false }).addTo(map);
+    marker_gps = L.marker([latitude, longitude], { draggable: true }).addTo(map);
     marker_gps.bindPopup("<b>Vaše poloha</b>").openPopup()
+    marker_gps.on('dragend', function (event) {
+        socket.emit('get_city', {lat:marker_gps.getLatLng().lat, lng:marker_gps.getLatLng().lng});
+    });
 }
 
 const nuke_option_list = nuckes_list.map(nuke =>
@@ -114,6 +117,7 @@ function Menu() {
     const [nuke_value, nuke_setValue] = React.useState("LittleBoy");
     const [textdesc, setDescText] = React.useState("");
     const [textmesage, setMesageText] = React.useState("");
+    const [citymesage, setCityText] = React.useState("Prague");
     React.useEffect(() => {
         socket.on("explode_nuke", (data) => {
             console.log(data["data"]["all_peope"]);
@@ -126,6 +130,12 @@ function Menu() {
             setMesageText(data)
         })
     })
+    React.useEffect(() => {
+        socket.on("send_city", (data) => {
+            console.log(data);
+            setCityText(data)
+        })
+    })
     return (
         <>
             <div className="menu_change_buttons">
@@ -136,7 +146,7 @@ function Menu() {
                 
                 {!value && (
                     <>
-                        <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search" value="Prague"/>
+                        <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search" value={citymesage}/>
                         {/* <input type="text" className="typetext" id="dataset" name="dataset"/> */}
                         <p>{textmesage}</p>
                         <div>
