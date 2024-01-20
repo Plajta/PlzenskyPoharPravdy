@@ -4,6 +4,7 @@ import json
 import os
 import requests
 from dataloader.dataloader import Dataloader
+import numpy as np
 
 
 #own modules
@@ -68,9 +69,9 @@ def handle_nukede(data):
     except Exception as e:
         print(e)
 
-    data_all = data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt.isnull()", ["hodnota"])[0][0]
-    data_muz = data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='muž'", ["hodnota"])[0][0]
-    data_zen = data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='žena'", ["hodnota"])[0][0]
+    data_all = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt.isnull()", ["hodnota"])[0][0])
+    data_muz = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='muž'", ["hodnota"])[0][0])
+    data_zen = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='žena'", ["hodnota"])[0][0])
 
     #get nuke params
     selected_nuke = None
