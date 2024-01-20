@@ -45,7 +45,7 @@
             }
         ],
         "uzemi_col": "vuzemi_txt",
-        "template": "Vědeli jste že v {obec} za rok {rok} zemřelo {zemrelo} lidi."
+        "template": "Vědeli jste že v {obec} za rok {rok} zemřelo {smrti} lidi."
     },
     "pristehovali": {
         "columns": [

@@ -16,10 +16,14 @@ with open('data/other_data/fact_config.json') as json_file:
 
 def generate_fact(dataload, obec):
     chosen = random.choice(list(categories.values()))
+    try:
+        path = chosen["filepath"]
+    except Exception:
+        path = None
     results = []
     for column in chosen["columns"]:
         query = f'{chosen["uzemi_col"]} == "{obec}" and {column["column"]} == {column["value"]}'
-        resul = dataload.query(query, column["output"])
+        resul = dataload.query(query, column["output"], path)
         # print(resul)
         for num, result in enumerate(resul):
             print(f"{str(column['var_name'][num])}: {str(result)}")
