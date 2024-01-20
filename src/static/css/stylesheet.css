@@ -20,14 +20,13 @@
     flex-direction: row;
     justify-content: end;
 }
-
 input::placeholder{
     color: wheat;
     opacity: 1;
-    
 }
 .typetext{
     background-color: #404040;
+    color: wheat;
     border: none !important;
     padding: 5px 10px;
     font-size: 18px;

@@ -26,10 +26,11 @@ def index():
     return render_template('index.html', nuke_data=nukes)
 
 @socketio.on('generate')
-def handle_message(data):
+def handle_generate(data):
     print('received message:', data)
     latitude = data["lat"]
     longitude = data["lng"]
+    choosed_nuke = data["choosed_nuke"]
     
 
 if __name__ == '__main__':

@@ -1,7 +1,8 @@
 
 var socket = io();
-function nukedeHandler(){
-    socket.emit('generate', marker.getLatLng());
+function nukedeHandler(nuke_value){
+    socket.emit('generate', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
+
 }
 
 const nukemapChange = (setValue) => {
@@ -48,9 +49,12 @@ const factsmapChange = (setValue) => {
     marker_gps.bindPopup("<b>Vaši poloha</b>").openPopup()
 }
 
-
+const nuke_option_list = nuckes_list.map(nuke =>
+    <option key={nuke.value} value={nuke.value}>{nuke.name}</option>
+  );
 function Menu() {
     const [value, setValue] = React.useState(false);
+    const [nuke_value, nuke_setValue] = React.useState("Little Boy");
     return (
         
     <div className="menu">
@@ -63,7 +67,6 @@ function Menu() {
                 <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search"/>
             
                 <input type="text" className="typetext" id="dataset" name="dataset"/>
-
                 <div>
                     <button>generate</button>
                 </div>
@@ -71,12 +74,12 @@ function Menu() {
         )}
         {value && (
             <>
-                <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Bomb Name"/>
-            
-                <input type="text" className="typetext" id="dataset" name="dataset"/>
+                <select value={nuke_value} onChange={e => nuke_setValue(e.target.value)} className="typetext">
+                    {nuke_option_list}
+                </select>
 
                 <div>
-                    <button onClick={nukedeHandler}>nukede</button>
+                    <button onClick={() => nukedeHandler(nuke_value)}>Nukede!</button>
                 </div>
             </>
         )}
