@@ -135,31 +135,31 @@ function Menu() {
                         <div className="circlecount">
                             <div className="circletitle">
                                 <div Style="color:red">■</div>
-                                <div>hello</div>
+                                <div>Poloměr hřibu</div>
                             </div>
                             <div className="circletitle">
                                 <div Style="color:green">■</div>
-                                <div>hello</div>
+                                <div>Poloměr radiace</div>
                             </div>
                         </div>
                         <div className="circlecount">
                             <div className="circletitle">
                                 <div Style="color:#ff8800">■</div>
-                                <div>hello</div>
+                                <div>Silná rázová vlna</div>
                             </div>
                             <div className="circletitle">
                                 <div Style="color:#ffe100">■</div>
-                                <div>hello</div>
+                                <div>Střední rázová vlna</div>
                             </div>
                         </div>
                         <div className="circlecount">
                             <div className="circletitle">
                                 <div Style="color:#42f56c">■</div>
-                                <div>hello</div>
+                                <div>Slabá rázová vlna</div>
                             </div>
                             <div className="circletitle">
                                 <div Style="color:#595959">■</div>
-                                <div>hello</div>
+                                <div>Tepelné záření</div>
                             </div>
                         </div>
                         <div>
