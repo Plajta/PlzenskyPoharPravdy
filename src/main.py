@@ -29,6 +29,11 @@ def index():
 @socketio.on('generate')
 def handle_generate(data):
     print('received message:', data)
+
+
+@socketio.on('nukede')
+def handle_nukede(data):
+    print('received nukede message:', data)
     latitude = data["lat"]
     longitude = data["lng"]
     choosed_nuke = data["choosed_nuke"]
@@ -36,7 +41,6 @@ def handle_generate(data):
                      params={"lon": longitude, "lat": latitude},
                      headers={"accept": "application/json",
                               "X-Mapy-Api-Key": "YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA"})
-    
 
 if __name__ == '__main__':
     socketio.run(app, allow_unsafe_werkzeug=True)

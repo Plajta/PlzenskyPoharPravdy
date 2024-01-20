@@ -1,7 +1,7 @@
 
 var socket = io();
 function nukedeHandler(nuke_value){
-    socket.emit('generate', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
+    socket.emit('nukede', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
 
 }
 
