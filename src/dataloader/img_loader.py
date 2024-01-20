@@ -62,16 +62,29 @@ for filename in os.listdir(img_data_path):
 img_path = os.path.join(img_data_path, "TCD_2018_010m_CR.tif")
 img = imageio.imread(img_path).astype(np.uint8)
 
+for slice_idx_y in range(math.floor(img.shape[0] / slice_fact)):
+    for slice_idx_x in range(math.floor(img.shape[1] / slice_fact)):
+
+        slice_num_x = (slice_idx_x * slice_fact) + 1000
+        slice_num_y = (slice_idx_y * slice_fact) + 1000
+
+        slice_num_x_last = slice_num_x - slice_fact
+        slice_num_y_last = slice_num_y - slice_fact
+
+        threshold_value = 150
+        binary_image = np.where(img[slice_num_y_last:slice_num_y, slice_num_x_last:slice_num_x] < threshold_value, 0, 255).astype(np.uint8)
+        img[slice_num_y_last:slice_num_y, slice_num_x_last:slice_num_x] = binary_image
+
+        #cv2.imshow("test", img[slice_num_y_last:slice_num_y, slice_num_x_last:slice_num_x])
+        #cv2.waitKey(0)
+
 new_pix = 1000
 r = new_pix / img.shape[1]
 dim = (new_pix, int(img.shape[0] * r))
 
 resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
 
-threshold_value = 150
-binary_image = np.where(resized < threshold_value, 0, 255).astype(np.uint8)
-
-contours, _ = cv2.findContours(binary_image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+contours, _ = cv2.findContours(resized, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 max_contour = max(contours, key=cv2.contourArea)
 filtered_contours = [cnt for cnt in contours if cnt is not max_contour]
 
@@ -97,21 +110,10 @@ print(topmost)
 print(botmost)
 
 cropped_img = img[topmost:botmost, leftmost:rightmost]
-print(cropped_img.shape)
-
-#TODO: too big to threshold
-#threshold_value = 150
-#cropped_img = np.where(cropped_img < threshold_value, 0, 255).astype(np.uint8)
-
-print(cropped_img.dtype)
-print(img.dtype)
 
 imsave("test.tif", cropped_img)
 
 exit()
-
-cv2.imshow("test", cropped_img)
-cv2.waitKey(0)
 
 for filename in os.listdir(img_data_path):
     if filename == ".gitkeep":
