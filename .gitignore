@@ -2,3 +2,4 @@
 env
 data/*
 !data/img_data/.gitkeep
+!data/gen_data/.gitkeep
