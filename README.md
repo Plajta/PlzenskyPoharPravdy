@@ -14,6 +14,6 @@ Aplikace nabízí hned několik funkcionalit:
 - Aplikace potřebuje ke správnému fungování přístup k poloze, aby mohla vyhledat pozici člověka na mapě
 
 ## TODO:
-- [ ] Aplikace - Andri
-- [ ] Map API - Vařek, Honza
-- [ ] Datíčka - Dan, Aleš
+- [ ] najet na production server
+- [ ] spravit geolokaci
+- [ ] dodělat nuke simulaci
