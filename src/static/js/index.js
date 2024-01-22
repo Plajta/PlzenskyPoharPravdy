@@ -1,8 +1,14 @@
 
 
-function nukedeHandler(nuke_value, setDescText){
+function nukedeHandler(nuke_value, setDescText, props){
     setDescText("")
+    props.setItIsTime(true);
+    props.setItIsTimeLight(true);
     socket.emit('nukede', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
+    setTimeout(() => { props.setItIsTime(false);}, 1000);
+    setTimeout(() => { props.setItIsTimeLight(false);}, 6000);
+    map.setView(marker_bomb.getLatLng(), map.getZoom());
+    
 
 }
 function generateHandler(){
@@ -112,7 +118,7 @@ const factsmapChange = (setValue) => {
 const nuke_option_list = nuckes_list.map(nuke =>
     <option key={nuke.value} value={nuke.value}>{nuke.name}</option>
   );
-function Menu() {
+const Menu = (props) => {
     const [value, setValue] = React.useState(false);
     const [nuke_value, nuke_setValue] = React.useState("LittleBoy");
     const [textdesc, setDescText] = React.useState("");
@@ -203,7 +209,7 @@ function Menu() {
                         }
 
                         <div>
-                            <button onClick={() => nukedeHandler(nuke_value, setDescText)}>Spustit simulaci</button>
+                            <button onClick={() => nukedeHandler(nuke_value, setDescText, props)}>Spustit simulaci</button>
                         </div>
                     </>
                 )}
@@ -213,9 +219,14 @@ function Menu() {
     )
 }
 function App() {
+    const [itistime, setItIsTime] = React.useState(false);
+    const [itistime_light, setItIsTimeLight] = React.useState(false);
     return(
         <div className="main_cont">  
-            <Menu />
+            <Menu setItIsTime={setItIsTime} setItIsTimeLight={setItIsTimeLight}/>
+            
+            <div className={itistime ? "bomb_do" : "bomb"}><img src="../static/img/nuke.svg" width="50"></img></div>
+            <div className={itistime_light ? "nuke_light_do" : "nuke_light"}></div>
         </div>
     );
 }

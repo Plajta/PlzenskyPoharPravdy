@@ -107,3 +107,45 @@ p{
     color: #000;
     transition: 0.3s;
 }
+.bomb{
+    display: none;
+}
+.bomb_do{
+    display: block !important;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    z-index: 9999;
+    animation-timing-function: ease-in;
+    animation-name: bomb_explode;
+    animation-duration: 1s;
+}
+@keyframes bomb_explode {
+    0%   {top: 0;left: 0; transform: translate(0,0) rotate(0deg);}
+    100% {top:50%; left:40%; transform: translate(-50%,-50%) rotate(90deg);}
+  }
+
+.nuke_light{
+    display: none;
+}
+
+.nuke_light_do{
+    display: block !important;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 999999;
+    opacity: 0;
+    animation-name: nuke_light_explode;
+    animation-duration: 5s;
+    animation-delay: 1s;
+}
+@keyframes nuke_light_explode {
+    0% {opacity: 1;}
+    40% {opacity: 1;}
+    100% {opacity: 0;}
+  }
