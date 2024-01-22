@@ -110,6 +110,11 @@ def normalize_and_modify():
     for filename in os.listdir(img_data_path):
         if filename == "README.txt" and ".gitkeep":
             continue
+        #skip already generated files
+        if "mod" in filename:
+            print(filename, "exists")
+            continue
+
         abs_path = os.path.join(img_data_path, filename)
         img = imread(abs_path).astype(np.uint8)
 
