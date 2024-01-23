@@ -2,49 +2,60 @@
     "img_data": [
         {
             "name": "IBU_2018_010m_CR.tif",
-            "link": "https://geoportal.gov.cz/atom/hrl/IBU_2018_010m_CR.tif"
+            "link": "https://geoportal.gov.cz/atom/hrl/IBU_2018_010m_CR.tif",
+            "sha1": "faee86da8e3e1131fb8dc70c3ecfaa4bd449192f"
         },
         {
             "name": "WAW_2018_010m_CR.tif",
-            "link": "https://geoportal.gov.cz/atom/hrl/WAW_2018_010m_CR.tif"
+            "link": "https://geoportal.gov.cz/atom/hrl/WAW_2018_010m_CR.tif",
+            "sha1": "7cb1f1f775b623ba95eb87a598d110129d05525a"
         },
         {
             "name": "TCD_2018_010m_CR.tif",
-            "link": "https://geoportal.gov.cz/atom/hrl/TCD_2018_010m_CR.tif"
+            "link": "https://geoportal.gov.cz/atom/hrl/TCD_2018_010m_CR.tif",
+            "sha1": "c3fd7218cad481630781a467b964bd9584fbc505"
         },
         {
             "name": "GRA_2018_010m_CR.tif",
-            "link": "https://geoportal.gov.cz/atom/hrl/GRA_2018_010m_CR.tif"
+            "link": "https://geoportal.gov.cz/atom/hrl/GRA_2018_010m_CR.tif",
+            "sha1": "79b60b597c93a75741431d0b687f9b63efd24eae"
         }
     ],
     "csv_data": [
         {
             "name": "pohyb2022.csv",
-            "link": "https://www.czso.cz/documents/62353418/213522460/130141-23data2022.csv"
+            "link": "https://www.czso.cz/documents/62353418/213522460/130141-23data2022.csv",
+            "sha1": "45841f82fb19fd2c0cedd072f06bb11ecb97ba93"
         },
         {
             "name": "skolske_zarizeni.csv",
-            "link": "https://www.czso.cz/documents/62353418/198619764/230057-23data101923.csv"
+            "link": "https://www.czso.cz/documents/62353418/198619764/230057-23data101923.csv",
+            "sha1": "5817c32d7abf18717b1f053eb06ee016481adffc"
         },
         {
             "name": "tur-a-prasata.csv",
-            "link": "https://www.czso.cz/documents/62353418/171347265/270248-22data020923.csv"
+            "link": "https://www.czso.cz/documents/62353418/171347265/270248-22data020923.csv",
+            "sha1": "20c393b9ba592a93d3a5043131efc1e14b4535b4"
         },
         {
             "name": "kanalizace.csv",
-            "link": "https://www.czso.cz/documents/62353418/200583836/sldb2021_obydomy_druh_odpad.csv"
+            "link": "https://www.czso.cz/documents/62353418/200583836/sldb2021_obydomy_druh_odpad.csv",
+            "sha1": "c3654420cbcd2cd8f9f0b330ea1411dcea8afa16"
         },
         {
             "name": "vek_podle_pohlavi.csv",
-            "link": "https://www.czso.cz/documents/62353418/182807150/sldb2021_prumvek_pohlavi.csv"
+            "link": "https://www.czso.cz/documents/62353418/182807150/sldb2021_prumvek_pohlavi.csv",
+            "sha1": "df841c610dca681fe64939748af82a7426a43c39"
         },
         {
             "name": "kuchyne.csv",
-            "link": "https://www.czso.cz/documents/62353418/192056095/sldb2021_byty_kuchyne.csv"
+            "link": "https://www.czso.cz/documents/62353418/192056095/sldb2021_byty_kuchyne.csv",
+            "sha1": "0b7c2249c874c530f1e03eff09ac546deb38ecbb"
         },
         {
             "name": "lide.csv",
-            "link": "https://www.czso.cz/documents/62353418/183907242/sldb2021_vek5_pohlavi.csv"
+            "link": "https://www.czso.cz/documents/62353418/183907242/sldb2021_vek5_pohlavi.csv",
+            "sha1": "08461e1b334fcdf7387db5f6039abd2c2c276593"
         }
     ]
 }
