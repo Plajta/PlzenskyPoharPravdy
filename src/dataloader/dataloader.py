@@ -24,7 +24,6 @@ class Dataloader:
         with Pool(processes=self.proc_count) as pool:
             for filename, csv in pool.map(loader, csv_names):
                 self.csv_files[os.path.basename(filename)] = csv
-        print(self.csv_files.keys())
     
     def query(self, query, columns=[], filename=None):
         data = [[file[1],query] for file in self.csv_files.items() if filename is None or filename == file[0]]
