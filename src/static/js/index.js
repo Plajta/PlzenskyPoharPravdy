@@ -1,23 +1,34 @@
+var page_props = undefined
 
-
-function nukedeHandler(nuke_value, setDescText, props){
+function nukedeHandler(nuke_value, setDescText){
     setDescText("")
-    props.setItIsTime(true);
-    props.setItIsTimeLight(true);
     socket.emit('nukede', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
-    setTimeout(() => { props.setItIsTime(false);}, 1000);
-    setTimeout(() => { props.setItIsTimeLight(false);}, 6000);
-    map.setView(marker_bomb.getLatLng(), map.getZoom());
-    
-
 }
 function generateHandler(){
     socket.emit('generate', {lat:marker_gps.getLatLng().lat, lng:marker_gps.getLatLng().lng});
 }
 
-
+socket.on('client_response', function(data){
+    //data for client responses
+    switch(data){
+        case "bad_country":
+            alert("Vybrali jste jinou zemi než ČR!")
+            break
+        case "no_nuke_found":
+            alert("Nevybrali jste žádnou bombu")
+            break
+    }
+})
 
 socket.on('explode_nuke', function(nuke_data){
+    //validation complete, time for animation
+    page_props.setItIsTime(true);
+    page_props.setItIsTimeLight(true);
+    setTimeout(() => { page_props.setItIsTime(false);}, 1000);
+    setTimeout(() => { page_props.setItIsTimeLight(false);}, 6000);
+    map.setView(marker_bomb.getLatLng(), map.getZoom());
+
+    //nuke data for exploding
     map.remove()
     map = L.map('map').setView({lng: bomb_longitude, lat: bomb_latitude}, 12);
 
@@ -142,6 +153,10 @@ const Menu = (props) => {
             setCityText(data)
         })
     })
+
+    //sorri andry (TODO ověřit)
+    page_props = props
+
     return (
         <>
             <div className="menu_change_buttons">
@@ -209,7 +224,7 @@ const Menu = (props) => {
                         }
 
                         <div>
-                            <button onClick={() => nukedeHandler(nuke_value, setDescText, props)}>Spustit simulaci</button>
+                            <button onClick={() => nukedeHandler(nuke_value, setDescText)}>Spustit simulaci</button>
                         </div>
                     </>
                 )}

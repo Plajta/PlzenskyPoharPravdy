@@ -52,6 +52,7 @@ def handle_generate(data):
 
     #city info
     city = ""
+    country = ""
     try:
         x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
                         params={"lon": data["lng"], "lat": data["lat"]},
@@ -61,8 +62,14 @@ def handle_generate(data):
         for y in x.json()["items"][0]["regionalStructure"]:
             if y["type"] == "regional.municipality":
                 city = y["name"]
+            if y["type"] == "regional.country":
+                country = y["name"]
     except Exception as e:
         print(e)
+
+    if country != "Česko":
+        emit("client_response", "bad_country")
+        return
 
     fact_message = generate_fact(data_loader, city)
     emit("send_random_fact", fact_message)
@@ -84,7 +91,6 @@ def handle_get_city(data):
     print(city)
     emit("send_city", city)
 
-
 @socketio.on('nukede')
 def handle_nukede(data):
     print('received nukede message:', data)
@@ -92,8 +98,9 @@ def handle_nukede(data):
     longitude = data["lng"]
     choosed_nuke = data["choosed_nuke"]
 
-    #city info
+    #city & country info
     city = ""
+    country = ""
     try:
         x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
                         params={"lon": longitude, "lat": latitude},
@@ -103,8 +110,14 @@ def handle_nukede(data):
         for y in x.json()["items"][0]["regionalStructure"]:
             if y["type"] == "regional.municipality":
                 city = y["name"]
+            if y["type"] == "regional.country":
+                country = y["name"]
     except Exception as e:
         print(e)
+
+    if country != "Česko":
+        emit("client_response", "bad_country")
+        return
 
     data_all = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt.isnull()", ["hodnota"])[0][0])
     data_muz = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='muž'", ["hodnota"])[0][0])
@@ -120,8 +133,8 @@ def handle_nukede(data):
             selected_nuke = nuke
             print("found nuke!")
     if selected_nuke == None:
-        print("no nuke found!")
-        emit("server_response", "no_nuke_found")
+        emit("client_response", "no_nuke_found")
+        return
 
     #if everything is oke, we shall continue right?
     grassland, concrete, forest, water = map_manip.ProcessPoI(longitude, latitude, selected_nuke["fireball-radius"])
