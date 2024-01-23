@@ -34,9 +34,3 @@ class Dataloader:
             return [[result[column].values[0] for result in results if result is not None and len(result[column].values) > 0] for column in columns] # OH YEAAAH BABYYYYY THAT'S WHAT WE'RE TALIKIN' 'BOUT
         else:
             return results
-
-
-if __name__ == '__main__':
-    dataloader = Dataloader("data/csv_data")
-    results = dataloader.query('uzemi_txt == "Plzeň" and odpad_kod == 20', "data/csv_data/kanaliza.csv")
-    print(results)
