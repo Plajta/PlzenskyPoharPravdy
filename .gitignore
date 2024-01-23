@@ -1,6 +1,7 @@
+__pycache__/
+
 .idea
 env
-src/dataloader/__pycache__/
 
 data/img_data/
 data/gen_data/
