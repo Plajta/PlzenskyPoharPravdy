@@ -40,3 +40,4 @@ Použili jsem velmi zajímavou a rozsáhlou škálu dat.
 - [ ] najet na production server
 - [ ] spravit geolokaci
 - [ ] dodělat nuke simulaci
+- [ ] přidat logging
