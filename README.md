@@ -34,7 +34,7 @@ Použili jsem velmi zajímavou a rozsáhlou škálu dat.
 - [mapa nepropustného povrchu 2018](https://geoportal.gov.cz/atom/hrl/IBU_2018_010m_CR.tif)
 
 ### Aplikace
-**Aplikace se nachází na adrese [plajta.vesek.eu](plajta.vesek.eu)**
+**Aplikace se nachází na adrese [plajta.vesek.eu](https://plajta.vesek.eu)**
 
 ## TODO:
 - [ ] najet na production server
