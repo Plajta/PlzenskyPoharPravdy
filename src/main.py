@@ -1,7 +1,5 @@
 import sys
 import os
-main_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(os.path.join(main_dir,"src"))
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 import json
@@ -10,6 +8,8 @@ from dataloader.dataloader import Dataloader
 import numpy as np
 from dataloader.random_fact import generate_fact
 
+main_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(main_dir,"src"))
 
 #own modules
 from dataloader.loc_compute import MapDataManipulator
