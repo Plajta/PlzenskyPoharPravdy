@@ -1,7 +1,10 @@
+import sys
+import os
+main_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(main_dir,"src"))
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 import json
-import os
 import requests
 from dataloader.dataloader import Dataloader
 import numpy as np
@@ -12,8 +15,11 @@ from dataloader.random_fact import generate_fact
 from dataloader.loc_compute import MapDataManipulator
 
 #variables
-nuke_config_path = os.getcwd()[:os.getcwd().index("PlzenskyPoharPravdy") + len("PlzenskyPoharPravdy")] + "/data/other_data/nuke_config.json"
-data_loader = Dataloader("data/csv_data/")
+nuke_config_path = os.path.join(main_dir,"data/other_data/nuke_config.json")
+data_path = os.path.join(main_dir,"data/csv_data/")
+
+#loading facts
+data_loader = Dataloader(data_path)
 
 #loading nukes
 nuke_config = open(nuke_config_path)
@@ -27,10 +33,7 @@ socketio = SocketIO(app)
 
 @app.route("/")
 def index():
-    #loading nukes
-    nukes = []
-    nuke_config = open(nuke_config_path)
-    nuke_config_data = json.load(nuke_config)
+    #loading nukesPrague
     nukes = []
 
     for nuke in nuke_config_data["nukes"]:
@@ -40,7 +43,6 @@ def index():
             "value": nuke["value"]
         })
 
-    print(nukes)
     return render_template('index.html', nuke_data=nukes)
     
 
