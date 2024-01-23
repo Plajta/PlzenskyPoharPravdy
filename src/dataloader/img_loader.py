@@ -5,7 +5,8 @@ import os
 import numpy as np
 import math
 
-img_data_path = os.getcwd()[:os.getcwd().index("PlzenskyPoharPravdy") + len("PlzenskyPoharPravdy")] + "/data/img_data/"
+main_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+img_data_path = os.path.join(main_dir, "data/img_data/")
 slice_fact = 1000
 
 #
@@ -112,7 +113,7 @@ def normalize_and_modify():
             continue
         #skip already generated files
         if "mod" in filename:
-            print(filename, "exists")
+            print(filename, "already exists")
             continue
 
         abs_path = os.path.join(img_data_path, filename)
