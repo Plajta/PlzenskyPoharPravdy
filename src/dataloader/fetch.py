@@ -38,6 +38,6 @@ for key in keys:
 
 #modify images
 if errors:
-    print("\033[91mRUN AGAIN, CURRUPTED FILES FOUND!")
+    print("\033[31mRUN AGAIN, CURRUPTED FILES FOUND!\033[0m")
 else:
     img_loader.normalize_and_modify()
