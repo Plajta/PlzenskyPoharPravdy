@@ -1,0 +1,9 @@
+services:
+  plppp:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - data:/home/flask/app/data
+volumes:
+  data:

@@ -16,6 +16,9 @@ USER flask
 # copy all the files to the container
 COPY --chown=flask:flask . .
 
+# setup volume
+VOLUME /home/app/data
+
 # venv
 ENV VIRTUAL_ENV=/home/app/venv
 
