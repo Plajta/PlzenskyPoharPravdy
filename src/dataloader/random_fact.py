@@ -4,7 +4,7 @@ import json
 def fstr(template):
     return eval(f"f'{template}'")
 
-with open('data/other_data/fact_config.json') as json_file:
+with open('config/fact_config.json') as json_file:
     categories = json.load(json_file)
 
 def generate_fact(dataload, obec):

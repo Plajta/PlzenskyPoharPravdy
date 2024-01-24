@@ -8,7 +8,7 @@ import json
 #variables
 main_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 img_data_path = os.path.join(main_dir,"data/img_data/")
-czech_rep_config_path = os.path.join(main_dir, "data/other_data/czech_rep_config.json")
+czech_rep_config_path = os.path.join(main_dir, "config/czech_rep_config.json")
 pix_to_m = 100 #taken from data.gov.cz
 threshold_value = 150
 

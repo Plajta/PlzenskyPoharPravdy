@@ -8,7 +8,7 @@ import img_loader
 
 #get abs path
 main_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-fetch_config_path = os.path.join(main_dir, "data/other_data/fetch_config.json")
+fetch_config_path = os.path.join(main_dir, "config/fetch_config.json")
 img_data_path = os.path.join(main_dir, "data/img_data/")
 
 with open(fetch_config_path) as fetch_config:

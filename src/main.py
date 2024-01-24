@@ -15,7 +15,7 @@ sys.path.append(os.path.join(main_dir,"src"))
 from dataloader.loc_compute import MapDataManipulator
 
 #variables
-nuke_config_path = os.path.join(main_dir,"data/other_data/nuke_config.json")
+nuke_config_path = os.path.join(main_dir,"config/nuke_config.json")
 data_path = os.path.join(main_dir,"data/csv_data/")
 
 #loading facts
@@ -161,4 +161,5 @@ def handle_nukede(data):
     
 
 if __name__ == '__main__':
+    print("Starting on port 5000")
     socketio.run(app, allow_unsafe_werkzeug=True)
