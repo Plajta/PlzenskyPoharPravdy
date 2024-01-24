@@ -162,4 +162,4 @@ def handle_nukede(data):
 
 if __name__ == '__main__':
     print("Starting on port 5000")
-    socketio.run(app, allow_unsafe_werkzeug=True)
+    socketio.run(app, allow_unsafe_werkzeug=True, host='0.0.0.0')

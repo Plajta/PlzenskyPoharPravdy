@@ -1,6 +1,7 @@
 var page_props = undefined
 
 function nukedeHandler(nuke_value, setDescText){
+    
     setDescText("")
     socket.emit('nukede', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
 }
@@ -24,58 +25,61 @@ socket.on('explode_nuke', function(nuke_data){
     //validation complete, time for animation
     page_props.setItIsTime(true);
     page_props.setItIsTimeLight(true);
-    setTimeout(() => { page_props.setItIsTime(false);}, 1000);
+    setTimeout(() => 
+    { 
+        page_props.setItIsTime(false);
+        
+        map.setView(marker_bomb.getLatLng(), map.getZoom());
+
+        //nuke data for exploding
+        map.remove()
+        map = L.map('map').setView({lng: bomb_longitude, lat: bomb_latitude}, 12);
+
+        L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
+            minZoom: 0,
+            maxZoom: 19,
+            attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
+        }).addTo(map);
+
+        
+        L.circle([bomb_latitude, bomb_longitude], {
+            color: '#3ef7b3',
+            fillColor: '#3ef7b3',
+            fillOpacity: 0.2,
+            radius: nuke_data["nuke_data"]["l-blast-radius"]*1000
+        }).addTo(map);
+        L.circle([bomb_latitude, bomb_longitude], {
+            color: '#595959',
+            fillColor: '#595959',
+            fillOpacity: 0.2,
+            radius: nuke_data["nuke_data"]["t-radiation-radius"]*1000
+        }).addTo(map);
+        L.circle([bomb_latitude, bomb_longitude], {
+            color: '#ffe100',
+            fillColor: '#ffe100',
+            fillOpacity: 0.2,
+            radius: nuke_data["nuke_data"]["m-blast-radius"]*1000
+        }).addTo(map);
+        L.circle([bomb_latitude, bomb_longitude], {
+            color: 'green',
+            fillColor: '#42f56c',
+            fillOpacity: 0.2,
+            radius: nuke_data["nuke_data"]["radiation-radius"]*1000
+        }).addTo(map);
+        L.circle([bomb_latitude, bomb_longitude], {
+            color: '#ff8800',
+            fillColor: '#ff8800',
+            fillOpacity: 0.2,
+            radius: nuke_data["nuke_data"]["h-blast-radius"]*1000
+        }).addTo(map);
+        L.circle([bomb_latitude, bomb_longitude], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.2,
+            radius: nuke_data["nuke_data"]["fireball-radius"]*1000
+        }).addTo(map);
+    }, 1000);
     setTimeout(() => { page_props.setItIsTimeLight(false);}, 6000);
-    map.setView(marker_bomb.getLatLng(), map.getZoom());
-
-    //nuke data for exploding
-    map.remove()
-    map = L.map('map').setView({lng: bomb_longitude, lat: bomb_latitude}, 12);
-
-    L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
-        minZoom: 0,
-        maxZoom: 19,
-        attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
-    }).addTo(map);
-
-    
-    L.circle([bomb_latitude, bomb_longitude], {
-        color: '#3ef7b3',
-        fillColor: '#3ef7b3',
-        fillOpacity: 0.2,
-        radius: nuke_data["nuke_data"]["l-blast-radius"]*1000
-    }).addTo(map);
-    L.circle([bomb_latitude, bomb_longitude], {
-        color: '#595959',
-        fillColor: '#595959',
-        fillOpacity: 0.2,
-        radius: nuke_data["nuke_data"]["t-radiation-radius"]*1000
-    }).addTo(map);
-    L.circle([bomb_latitude, bomb_longitude], {
-        color: '#ffe100',
-        fillColor: '#ffe100',
-        fillOpacity: 0.2,
-        radius: nuke_data["nuke_data"]["m-blast-radius"]*1000
-    }).addTo(map);
-    L.circle([bomb_latitude, bomb_longitude], {
-        color: 'green',
-        fillColor: '#42f56c',
-        fillOpacity: 0.2,
-        radius: nuke_data["nuke_data"]["radiation-radius"]*1000
-    }).addTo(map);
-    L.circle([bomb_latitude, bomb_longitude], {
-        color: '#ff8800',
-        fillColor: '#ff8800',
-        fillOpacity: 0.2,
-        radius: nuke_data["nuke_data"]["h-blast-radius"]*1000
-    }).addTo(map);
-    L.circle([bomb_latitude, bomb_longitude], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.2,
-        radius: nuke_data["nuke_data"]["fireball-radius"]*1000
-    }).addTo(map);
-    
 }
 )
 
