@@ -17,6 +17,8 @@ keys = data.keys()
 
 errors = False
 
+print("Checking files")
+
 for key in keys:
     for file in data[key]:
         path = f"data/{key}/{file['name']}"
