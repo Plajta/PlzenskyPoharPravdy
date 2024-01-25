@@ -1,9 +1,9 @@
 services:
   plppp:
+    restart: always
     build: .
     ports:
-      - "5000:5000"
+      - "127.0.0.1:5000:5000/tcp"
+      - "127.0.0.1:5000:5000/udp"
     volumes:
-      - data:/home/flask/app/data
-volumes:
-  data:
+      - ./data:/home/app/data
