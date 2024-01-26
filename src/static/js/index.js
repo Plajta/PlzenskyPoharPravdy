@@ -1,7 +1,9 @@
-var page_props = undefined
+var page_props = undefined;
+
+var animation_done = false;
 
 function nukedeHandler(nuke_value, setDescText){
-    
+    animation_done = false;
     setDescText("")
     socket.emit('nukede', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
 }
@@ -23,12 +25,16 @@ socket.on('client_response', function(data){
 
 socket.on('explode_nuke', function(nuke_data){
     //validation complete, time for animation
+    window.scrollTo(0, 0)
     page_props.setItIsTime(true);
     page_props.setItIsTimeLight(true);
     setTimeout(() => 
     { 
         page_props.setItIsTime(false);
-        
+    }, 1000);
+    setTimeout(() => 
+    { 
+        animation_done = true;
         map.setView(marker_bomb.getLatLng(), map.getZoom());
 
         //nuke data for exploding
@@ -78,7 +84,7 @@ socket.on('explode_nuke', function(nuke_data){
             fillOpacity: 0.2,
             radius: nuke_data["nuke_data"]["fireball-radius"]*1000
         }).addTo(map);
-    }, 1000);
+    }, 1100);
     setTimeout(() => { page_props.setItIsTimeLight(false);}, 6000);
 }
 )
@@ -141,8 +147,10 @@ const Menu = (props) => {
     const [citymesage, setCityText] = React.useState("Prague");
     React.useEffect(() => {
         socket.on("explode_nuke", (data) => {
-            console.log(data["data"]["all_peope"]);
-            setDescText(data["data"])
+            setTimeout(() => {
+                console.log(data["data"]["all_peope"]);
+                setDescText(data["data"])
+            }, 1100);
         })
     })
     React.useEffect(() => {
@@ -158,7 +166,7 @@ const Menu = (props) => {
         })
     })
 
-    //sorri andry (TODO ověřit)
+    //sorri andry (TODO ověřit) // what a hell?
     page_props = props
 
     return (

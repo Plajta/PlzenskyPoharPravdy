@@ -9,12 +9,12 @@ html{
 }
 body{
     height: 100%;
+    background-color: #212121;
 }
 .main_main_cont{
     height: 100%;
 }
 #root{
-    height: 100%;
 }
 button{
     background-color: #292929;
@@ -80,7 +80,7 @@ p{
 .rounded_button{
     align-self: flex-end;
     justify-content: flex-end;
-    margin: auto 30px 30px 30px;
+    margin: 50px 30px 30px 30px;
     background-color: #000;
     color: #fff;
     padding: 13px 20px;
