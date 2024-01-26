@@ -87,6 +87,8 @@ function watch(pos) {
             }
         }
     }
+    navigator.geolocation.clearWatch(id)
+    id = undefined;
 }
 
 

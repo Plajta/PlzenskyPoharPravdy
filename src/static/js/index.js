@@ -9,6 +9,24 @@ function generateHandler(){
     socket.emit('generate', {lat:marker_gps.getLatLng().lat, lng:marker_gps.getLatLng().lng});
 }
 
+
+
+function moveToGeoPos() {
+    marker_same = true
+    if (longitude != 14.418540 && latitude != 50.073658){
+        map.setView({lng: longitude, lat: latitude}, map.getZoom());
+        marker_gps.setLatLng([latitude,longitude]);
+        fact_latitude = latitude
+        fact_longitude = longitude
+    }
+    else{
+        if (!id){
+            id = navigator.geolocation.watchPosition(watch, (err) => {
+                console.error(`ERROR(${err.code}): ${err.message}`);
+            }, options);
+        }
+    }
+}
 socket.on('client_response', function(data){
     //data for client responses
     switch(data){
@@ -175,7 +193,10 @@ const Menu = (props) => {
                 
                 {!value && (
                     <>
-                        <input type="text" className="typetext" id="mesto" name="mesto" placeholder={citymesage}/>
+                        <div className="shearch_cont">
+                            <input type="text" className="typetext" id="mesto" name="mesto" placeholder={citymesage}/>
+                            <button onClick={moveToGeoPos}><i className="fa-solid fa-location-crosshairs"></i></button>
+                        </div>
                         {/* <input type="text" className="typetext" id="dataset" name="dataset"/> */}
                         <p>{textmesage}</p>
                         

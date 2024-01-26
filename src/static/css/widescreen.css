@@ -101,6 +101,9 @@ input::placeholder{
     font-size: 18px;
     border-radius: 5px;
     box-sizing: border-box;
+    width: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 
@@ -240,4 +243,16 @@ p{
     .circlecount{
         column-count: 1;
     }
+}
+.shearch_cont{
+    display: flex;
+    width: 100%;
+    justify-content: stretch;
+}
+.shearch_cont button{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.shearch_cont button:hover{
+    background-color: #353535;
 }
