@@ -232,12 +232,13 @@ const Menu = (props) => {
                         }
 
                         <div>
-                            <button onClick={() => nukedeHandler(nuke_value, setDescText)}>Spustit simulaci</button>
+                            <button id="button_nuke" onClick={() => nukedeHandler(nuke_value, setDescText)}>Spustit simulaci</button>
                         </div>
+                        
                     </>
                 )}
+                <a className="rounded_button" href="https://github.com/Plajta/PlzenskyPoharPravdy">?</a> 
             </div>
-            <a className="rounded_button" href="https://github.com/Plajta/PlzenskyPoharPravdy">?</a> 
         </>
     )
 }

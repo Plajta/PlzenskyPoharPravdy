@@ -6,10 +6,13 @@
 }
 html{
     height: 100vh;
+    background-color: #1b1b1b;
 }
 body{
     height: 100%;
     background-color: #212121;
+    max-width: 650px;
+    margin: 0 auto;
 }
 .main_main_cont{
     height: 100%;

@@ -82,6 +82,8 @@ button:active{
     gap: 15px;
     padding: 20px;
     min-width: 300px;
+    overflow: scroll;
+    height: 100%;
 }
 .menu div{
     display: flex;
@@ -155,7 +157,7 @@ p{
 .rounded_button{
     align-self: flex-end;
     justify-content: flex-end;
-    margin: auto 30px 30px 30px;
+    margin: auto 10px 10px 10px;
     background-color: #000;
     color: #fff;
     padding: 13px 20px;
@@ -210,3 +212,6 @@ p{
     40% {opacity: 1;}
     100% {opacity: 0;}
   }
+#button_nuke{
+    margin-bottom: 30px;
+}
