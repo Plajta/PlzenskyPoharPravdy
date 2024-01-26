@@ -1,9 +1,7 @@
 var page_props = undefined;
 
-var animation_done = false;
 
 function nukedeHandler(nuke_value, setDescText){
-    animation_done = false;
     setDescText("")
     socket.emit('nukede', {lat:marker_bomb.getLatLng().lat, lng:marker_bomb.getLatLng().lng, choosed_nuke:nuke_value});
 }
@@ -25,6 +23,7 @@ socket.on('client_response', function(data){
 
 socket.on('explode_nuke', function(nuke_data){
     //validation complete, time for animation
+    map.setView(marker_bomb.getLatLng(), map.getZoom());
     window.scrollTo(0, 0)
     page_props.setItIsTime(true);
     page_props.setItIsTimeLight(true);
@@ -34,9 +33,6 @@ socket.on('explode_nuke', function(nuke_data){
     }, 1000);
     setTimeout(() => 
     { 
-        animation_done = true;
-        map.setView(marker_bomb.getLatLng(), map.getZoom());
-
         //nuke data for exploding
         map.remove()
         map = L.map('map').setView({lng: bomb_longitude, lat: bomb_latitude}, 12);

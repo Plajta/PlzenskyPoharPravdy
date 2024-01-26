@@ -36,7 +36,6 @@ button:active{
     transition: 0.1s;
 }
 #root{
-    flex: 0.05;
     background-color: #212121;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -50,7 +49,7 @@ button:active{
 .map-cont{
     height: 100%;
     box-sizing: border-box;
-    flex: 0.95;
+    width: 75vw;
 }
 .main_main_cont{
     display: flex;
@@ -177,8 +176,6 @@ p{
 .bomb_do{
     display: block !important;
     position: absolute;
-    top: 50%;
-    left: 40%;
     z-index: 9999;
     animation-timing-function: ease-in;
     animation-name: bomb_explode;
@@ -186,7 +183,7 @@ p{
 }
 @keyframes bomb_explode {
     0%   {top: 0;left: 0; transform: translate(0,0) rotate(0deg);}
-    100% {top:50%; left:40%; transform: translate(-50%,-50%) rotate(90deg);}
+    100% {top:50%; left:35vw; transform: translate(50%,-90%) rotate(90deg);}
   }
 
 .nuke_light{
