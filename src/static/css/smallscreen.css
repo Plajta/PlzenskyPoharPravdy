@@ -66,15 +66,15 @@ p{
     font-size: 13px;
 }
 .circletitle{
-    display: inline-block;
-    justify-content: start !important;
+    display: flex;
     gap: 10px;
     padding: 0 10px;
     font-size: 13px;
+    min-width: 120px;
 }
 .circlecount{
-    display: inline-block;
-    justify-content: space-between !important;
+    column-count: 2;
+    max-width: 300px;
 }
 .rounded_button{
     align-self: flex-end;
@@ -112,11 +112,6 @@ p{
     gap: 15px;
     padding: 20px;
     min-width: 300px;
-}
-.menu div{
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
 }
 input::placeholder{
     color: wheat;
@@ -173,3 +168,8 @@ input::placeholder{
     40% {opacity: 1; height: 100vh;}
     100% {opacity: 0; height: 100vh;}
   }
+.data_for_user{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

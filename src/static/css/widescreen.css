@@ -225,6 +225,11 @@ p{
 #button_nuke{
     margin-bottom: 30px;
 }
+.data_for_user{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
 @media only screen and (min-width: 1860px) {
     .data_for_user{
         display: flex;
