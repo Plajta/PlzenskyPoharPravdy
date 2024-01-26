@@ -178,9 +178,8 @@ const Menu = (props) => {
                         <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search" value={citymesage}/>
                         {/* <input type="text" className="typetext" id="dataset" name="dataset"/> */}
                         <p>{textmesage}</p>
-                        <div>
-                            <button onClick={generateHandler}>Generovat</button>
-                        </div>
+                        
+                        <button onClick={generateHandler}>Generovat</button>
                     </>
                 )}
                 {value && (
@@ -188,52 +187,49 @@ const Menu = (props) => {
                         <select value={nuke_value} onChange={e => nuke_setValue(e.target.value)} className="typetext">
                             {nuke_option_list}
                         </select>
-                        <div className="circlecount">
-                            <div className="circletitle">
-                                <div Style="color:red">■</div>
-                                <div>Poloměr hřibu</div>
+                        <div className="data_for_user">
+                            <div className="circlecount">
+                                <div className="circletitle">
+                                    <div Style="color:red">■</div>
+                                    <div>Poloměr hřibu</div>
+                                </div>
+                                <div className="circletitle">
+                                    <div Style="color:#ff8800">■</div>
+                                    <div>Silná rázová vlna</div>
+                                </div>
+                                <div className="circletitle">
+                                    <div Style="color:#42f56c">■</div>
+                                    <div>Slabá rázová vlna</div>
+                                </div>
+                                <div className="circletitle">
+                                    <div Style="color:green">■</div>
+                                    <div>Poloměr radiace</div>
+                                </div>
+                                <div className="circletitle">
+                                    <div Style="color:#ffe100">■</div>
+                                    <div>Střední rázová vlna</div>
+                                </div>
+                                <div className="circletitle">
+                                    <div Style="color:#595959">■</div>
+                                    <div>Tepelné záření</div>
+                                </div>
                             </div>
-                            <div className="circletitle">
-                                <div Style="color:green">■</div>
-                                <div>Poloměr radiace</div>
-                            </div>
+                            {textdesc != "" && (
+                                <div>
+                                    <p>Víte, že jste pravě zabili {textdesc["all_peope"]} lidí?</p>
+                                    <p>{textdesc["women"]}% žen</p>
+                                    <p>{textdesc["men"]}% mužů</p>
+                                    <p>{textdesc["grass"]} grass</p>
+                                    <p>{textdesc["concrete"]} concrete</p>
+                                    <p>{textdesc["forest"]} forest</p>
+                                    <p>{textdesc["water"]} water</p>
+                                </div>
+                            )
+                            }
                         </div>
-                        <div className="circlecount">
-                            <div className="circletitle">
-                                <div Style="color:#ff8800">■</div>
-                                <div>Silná rázová vlna</div>
-                            </div>
-                            <div className="circletitle">
-                                <div Style="color:#ffe100">■</div>
-                                <div>Střední rázová vlna</div>
-                            </div>
-                        </div>
-                        <div className="circlecount">
-                            <div className="circletitle">
-                                <div Style="color:#42f56c">■</div>
-                                <div>Slabá rázová vlna</div>
-                            </div>
-                            <div className="circletitle">
-                                <div Style="color:#595959">■</div>
-                                <div>Tepelné záření</div>
-                            </div>
-                        </div>
-                        {textdesc != "" && (
-                            <>
-                                <p>Víte, že jste pravě zabili {textdesc["all_peope"]} lidí?</p>
-                                <p>{textdesc["women"]}% žen</p>
-                                <p>{textdesc["men"]}% mužů</p>
-                                <p>{textdesc["grass"]} grass</p>
-                                <p>{textdesc["concrete"]} concrete</p>
-                                <p>{textdesc["forest"]} forest</p>
-                                <p>{textdesc["water"]} water</p>
-                            </>
-                        )
-                        }
-
-                        <div>
-                            <button id="button_nuke" onClick={() => nukedeHandler(nuke_value, setDescText)}>Spustit simulaci</button>
-                        </div>
+                        
+                        <button id="button_nuke" onClick={() => nukedeHandler(nuke_value, setDescText)}>Spustit simulaci</button>
+                        
                         
                     </>
                 )}

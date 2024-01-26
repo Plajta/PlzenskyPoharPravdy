@@ -39,6 +39,7 @@ button:active{
     background-color: #212121;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    width: 30vw;
 }
 #map { 
     height: 100%;
@@ -85,10 +86,8 @@ button:active{
     overflow: scroll;
     height: 100%;
 }
-.menu div{
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
+.menu button{
+    margin-left: auto;
 }
 input::placeholder{
     color: wheat;
@@ -144,16 +143,27 @@ p{
     font-size: 13px;
 }
 .circletitle{
-    display: inline-block;
-    justify-content: start !important;
+    display: flex;
     gap: 10px;
     padding: 0 10px;
     font-size: 13px;
+    min-width: 120px;
 }
 .circlecount{
-    display: inline-block;
-    justify-content: space-between !important;
+    column-count: 2;
+    max-width: 300px;
 }
+@media only screen and (min-width: 1250px) {
+    .circletitle{
+        min-width: 150px;
+    }
+}
+@media only screen and (max-width: 1080px) {
+    .circletitle{
+        min-width: 0px;
+    }
+}
+
 .rounded_button{
     align-self: flex-end;
     justify-content: flex-end;
@@ -214,4 +224,15 @@ p{
   }
 #button_nuke{
     margin-bottom: 30px;
+}
+@media only screen and (min-width: 1860px) {
+    .data_for_user{
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 50px;
+        justify-content: start;
+    }
+    .circlecount{
+        column-count: 1;
+    }
 }

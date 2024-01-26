@@ -85,7 +85,7 @@ function watch(pos) {
 
             // add_circle([latitude, longitude])
 
-            marker_gps = L.marker([latitude, longitude], { draggable: true }).addTo(map);
+            
             marker_gps.bindPopup("<b>Vaše poloha</b>").openPopup()
             marker_gps.on('dragend', function (event) {
                 socket.emit('get_city', {lat:marker_gps.getLatLng().lat, lng:marker_gps.getLatLng().lng});
