@@ -184,7 +184,7 @@ input::placeholder{
     40% {opacity: 1; height: 100vh;}
     100% {opacity: 0; height: 100vh;}
   }
-.data_for_user{
+  .data_for_user{
     display: flex;
     flex-direction: column;
     gap: 30px;

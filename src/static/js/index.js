@@ -116,19 +116,19 @@ const nukemapChange = (setValue) => {
 const factsmapChange = (setValue) => {
     setValue(false)
 
-    console.log(longitude)
-    console.log(latitude)
     map.remove()
-    map = L.map('map').setView({lng: longitude, lat: latitude}, 16);
+    map = L.map('map').setView({lng: fact_longitude, lat: fact_latitude}, 16);
     L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
         minZoom: 0,
         maxZoom: 19,
         attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
     }).addTo(map);
-    marker_gps = L.marker([latitude, longitude], { draggable: true }).addTo(map);
-    marker_gps.bindPopup("<b>Vaše poloha</b>").openPopup()
+    marker_gps = L.marker([fact_latitude, fact_longitude], { draggable: true }).addTo(map);
     marker_gps.on('dragend', function (event) {
         socket.emit('get_city', {lat:marker_gps.getLatLng().lat, lng:marker_gps.getLatLng().lng});
+        var marker = event.target;
+        fact_latitude = marker.getLatLng().lat;
+        fact_longitude = marker.getLatLng().lng;
     });
 }
 
@@ -168,14 +168,14 @@ const Menu = (props) => {
     return (
         <>
             <div className="menu_change_buttons">
-                <div className={!value && "menu_change_buttons menu_change_button_active"} onClick={() => factsmapChange(setValue)}>Fakty</div>
-                <div Style="border-radius: 0 10px 0 0;" className={value && "menu_change_buttons menu_change_button_active"} onClick={() => nukemapChange(setValue)}>Zbraň</div>
+                <div className={value ? undefined : "menu_change_buttons menu_change_button_active"} onClick={() => factsmapChange(setValue)}>Fakty</div>
+                <div style={{borderRadius: "0 10px 0 0"}} className={value ? "menu_change_buttons menu_change_button_active" : undefined} onClick={() => nukemapChange(setValue)}>Zbraň</div>
             </div>
             <div className="menu">
                 
                 {!value && (
                     <>
-                        <input type="text" className="typetext" id="mesto" name="mesto" placeholder="Search" value={citymesage}/>
+                        <input type="text" className="typetext" id="mesto" name="mesto" placeholder={citymesage}/>
                         {/* <input type="text" className="typetext" id="dataset" name="dataset"/> */}
                         <p>{textmesage}</p>
                         
@@ -190,27 +190,27 @@ const Menu = (props) => {
                         <div className="data_for_user">
                             <div className="circlecount">
                                 <div className="circletitle">
-                                    <div Style="color:red">■</div>
+                                    <div style={{color:"red"}}>■</div>
                                     <div>Poloměr hřibu</div>
                                 </div>
                                 <div className="circletitle">
-                                    <div Style="color:#ff8800">■</div>
+                                    <div style={{color:"#ff8800"}}>■</div>
                                     <div>Silná rázová vlna</div>
                                 </div>
                                 <div className="circletitle">
-                                    <div Style="color:#42f56c">■</div>
+                                    <div style={{color:"#42f56c"}}>■</div>
                                     <div>Slabá rázová vlna</div>
                                 </div>
                                 <div className="circletitle">
-                                    <div Style="color:green">■</div>
+                                    <div style={{color:"green"}}>■</div>
                                     <div>Poloměr radiace</div>
                                 </div>
                                 <div className="circletitle">
-                                    <div Style="color:#ffe100">■</div>
+                                    <div style={{color:"#ffe100"}}>■</div>
                                     <div>Střední rázová vlna</div>
                                 </div>
                                 <div className="circletitle">
-                                    <div Style="color:#595959">■</div>
+                                    <div style={{color:"#595959"}}>■</div>
                                     <div>Tepelné záření</div>
                                 </div>
                             </div>

@@ -195,7 +195,7 @@ p{
 }
 @keyframes bomb_explode {
     0%   {top: 0;left: 0; transform: translate(0,0) rotate(0deg);}
-    100% {top:50%; left:35vw; transform: translate(50%,-90%) rotate(90deg);}
+    100% {top:50%; left:35vw; transform: translate(-50%,-90%) rotate(90deg);}
   }
 
 .nuke_light{

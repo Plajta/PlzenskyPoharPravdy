@@ -29,6 +29,14 @@ window.onload = () => {
     maxZoom: 19,
     attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
     }).addTo(map);
+    marker_gps = L.marker([latitude, longitude], { draggable: true }).addTo(map);
+    marker_gps.on('dragend', function (event) {
+        var marker = event.target;
+        socket.emit('get_city', {lat:marker.getLatLng().lat, lng:marker.getLatLng().lng});
+        fact_latitude = marker.getLatLng().lat;
+        fact_longitude = marker.getLatLng().lng;
+        marker_same = false;
+    });
 
     /*
     We also require you to include our logo somewhere over the map.
@@ -64,33 +72,19 @@ function watch(pos) {
     if (crd.longitude != longitude && crd.latitude != latitude){
         longitude = crd.longitude
         latitude = crd.latitude
-        console.log(longitude)
-        console.log(latitude)
+        if (marker_same){
+            fact_latitude = latitude
+            fact_longitude = longitude
+        }
         if (!marker_bomb){
             bomb_longitude = longitude
             bomb_latitude = latitude
-
+            if (marker_same){
+                map.setView({lng: longitude, lat: latitude});
+                marker_gps.setLatLng([latitude,longitude]);
             
-
-            map.remove()
-            map = L.map('map').setView({lng: longitude, lat: latitude}, 16);
-
-            L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
-                minZoom: 0,
-                maxZoom: 19,
-                attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
-            }).addTo(map);
-
-
-
-            // add_circle([latitude, longitude])
-
-            
-            marker_gps.bindPopup("<b>Vaše poloha</b>").openPopup()
-            marker_gps.on('dragend', function (event) {
-                socket.emit('get_city', {lat:marker_gps.getLatLng().lat, lng:marker_gps.getLatLng().lng});
-            });
-            navigator.geolocation.clearWatch(id)
+                navigator.geolocation.clearWatch(id)
+            }
         }
     }
 }
