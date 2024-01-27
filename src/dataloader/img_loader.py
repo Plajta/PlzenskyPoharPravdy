@@ -8,6 +8,7 @@ import math
 main_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 img_data_path = os.path.join(main_dir, "data/img_data/")
 slice_fact = 1000
+NUMBER_OF_TIF_FILES = 4
 
 #
 # FOR VISUALISATION
@@ -57,6 +58,20 @@ for filename in os.listdir(img_data_path):
 """
 
 def normalize_and_modify():
+    #list over files to check
+    mod_num = 0
+    for filename in os.listdir(img_data_path):
+        #skip already generated files
+        if "mod" in filename:
+            mod_num += 1
+            continue
+
+    if mod_num == NUMBER_OF_TIF_FILES:
+        print("All files fetched and normalized")
+        return
+    else:
+        print("Normalizing .tif files (this could take a long time if the server is run at the first time)")
+
     #
     # Get image cropping data
     #

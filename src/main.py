@@ -13,6 +13,7 @@ sys.path.append(os.path.join(main_dir,"src"))
 
 #own modules
 from dataloader.loc_compute import MapDataManipulator
+from dataloader.fetch import fetch_and_check
 
 #variables
 nuke_config_path = os.path.join(main_dir,"config/nuke_config.json")
@@ -24,6 +25,9 @@ data_loader = Dataloader(data_path)
 #loading nukes
 nuke_config = open(nuke_config_path)
 nuke_config_data = json.load(nuke_config)
+
+#fetching and loading all data
+fetch_and_check()
 
 #loading all the map data to RAM
 map_manip = MapDataManipulator()
@@ -71,7 +75,13 @@ def handle_generate(data):
         emit("client_response", "bad_country")
         return
 
-    fact_message = generate_fact(data_loader, city)
+    #generate random fact
+    try:
+        fact_message = generate_fact(data_loader, city)
+    except Exception as E:
+        print("error while querying data & generating random fact, see below:")
+        print(E)
+
     emit("send_random_fact", fact_message)
 
 @socketio.on('get_city')
@@ -119,9 +129,14 @@ def handle_nukede(data):
         emit("client_response", "bad_country")
         return
 
-    data_all = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt.isnull()", ["hodnota"])[0][0])
-    data_muz = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='muž'", ["hodnota"])[0][0])
-    data_zen = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='žena'", ["hodnota"])[0][0])
+    #fetching data
+    try:
+        data_all = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt.isnull()", ["hodnota"])[0][0])
+        data_muz = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='muž'", ["hodnota"])[0][0])
+        data_zen = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='žena'", ["hodnota"])[0][0])
+    except Exception as E:
+        print("error while querying data, see below:")
+        print(E)
 
     data_muz_percent = round((data_muz / data_all) * 100, 2)
     data_zen_percent = round((data_zen / data_all) * 100, 2) 
