@@ -37,7 +37,6 @@ Použili jsem velmi zajímavou a rozsáhlou škálu dat.
 **Aplikace se nachází na adrese [plajta.vesek.eu](https://plajta.vesek.eu)**
 
 ## TODO:
-- [ ] najet na production server
-- [ ] spravit geolokaci
+- [x] najet na production server
+- [x] spravit geolokaci
 - [ ] dodělat nuke simulaci
-- [ ] přidat logging
