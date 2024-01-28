@@ -158,7 +158,7 @@ const Menu = (props) => {
     const [nuke_value, nuke_setValue] = React.useState("LittleBoy");
     const [textdesc, setDescText] = React.useState("");
     const [textmesage, setMesageText] = React.useState("");
-    const [citymesage, setCityText] = React.useState("Prague");
+    const [citymesage, setCityText] = React.useState("Praha");
     React.useEffect(() => {
         socket.on("explode_nuke", (data) => {
             setTimeout(() => {
