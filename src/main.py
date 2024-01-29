@@ -7,6 +7,9 @@ import requests
 from dataloader.dataloader import Dataloader
 import numpy as np
 from dataloader.random_fact import generate_fact
+from modules.loging import Logging
+
+LOG = Logging("Main")
 
 main_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(main_dir,"src"))
@@ -68,8 +71,9 @@ def handle_generate(data):
                 city = y["name"]
             if y["type"] == "regional.country":
                 country = y["name"]
-    except Exception as e:
-        print(e)
+    except Exception as E:
+        LOG.Error(f"City not found!")
+        LOG.Error(E, 0)
 
     if country != "Česko":
         emit("client_response", "bad_country")
@@ -79,8 +83,8 @@ def handle_generate(data):
     try:
         fact_message = generate_fact(data_loader, city)
     except Exception as E:
-        print("error while querying data & generating random fact, see below:")
-        print(E)
+        LOG.Error("error while querying data & generating random fact, see below:")
+        LOG.Error(E, 0)
 
     emit("send_random_fact", fact_message)
 
@@ -97,13 +101,13 @@ def handle_get_city(data):
             if y["type"] == "regional.municipality":
                 city = y["name"]
     except Exception as e:
-        print(e)
-    print(city)
+        LOG.Error(e)
+    LOG.Info("city: "+city)
     emit("send_city", city)
 
 @socketio.on('nukede')
 def handle_nukede(data):
-    print('received nukede message:', data)
+    LOG.Info(f'received nukede message: {data}')
     latitude = data["lat"]
     longitude = data["lng"]
     choosed_nuke = data["choosed_nuke"]
@@ -122,8 +126,9 @@ def handle_nukede(data):
                 city = y["name"]
             if y["type"] == "regional.country":
                 country = y["name"]
-    except Exception as e:
-        print(e)
+    except Exception as E:
+        LOG.Error(f"City not found!")
+        LOG.Error(E, 0)
 
     if country != "Česko":
         emit("client_response", "bad_country")
@@ -135,8 +140,8 @@ def handle_nukede(data):
         data_muz = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='muž'", ["hodnota"])[0][0])
         data_zen = int(data_loader.query(f"uzemi_txt=='{city}' and vek_txt.isnull() and pohlavi_txt =='žena'", ["hodnota"])[0][0])
     except Exception as E:
-        print("error while querying data, see below:")
-        print(E)
+        LOG.Error("error while querying data, see below:")
+        LOG.Error(E, 0)
 
     data_muz_percent = round((data_muz / data_all) * 100, 2)
     data_zen_percent = round((data_zen / data_all) * 100, 2) 
@@ -146,7 +151,7 @@ def handle_nukede(data):
     for nuke in nuke_config_data["nukes"]:
         if nuke["value"] == choosed_nuke:
             selected_nuke = nuke
-            print("found nuke!")
+            LOG.Info("found nuke!")
     if selected_nuke == None:
         emit("client_response", "no_nuke_found")
         return
@@ -155,7 +160,7 @@ def handle_nukede(data):
     grassland, concrete, forest, water = map_manip.ProcessPoI(longitude, latitude, selected_nuke["fireball-radius"])
 
     #send nuke data to frontend #TODO add even more
-    print("geo:", grassland,concrete,forest,water)
+    LOG.Info(f"geo: {grassland},{concrete},{forest},{water}")
     emit("explode_nuke", {
         "data": {
             "all_peope": data_all,
@@ -176,5 +181,5 @@ def handle_nukede(data):
     
 
 if __name__ == '__main__':
-    print("Starting on port 5000")
+    LOG.Info("Starting on port 5000")
     socketio.run(app, port=5000, host="0.0.0.0", allow_unsafe_werkzeug=True)
