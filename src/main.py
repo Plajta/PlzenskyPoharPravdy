@@ -16,10 +16,12 @@ main_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(main_dir,"src"))
 
 #read server config
-config = open(os.path.join(main_dir, "server_conf.yaml"))
+config = open(os.path.join(main_dir, "config", "server_conf.yaml"))
 config_data = yaml.safe_load(config)
 
 API_KEY = config_data["KEY"]
+PORT = config_data["PORT"]
+ADDR = config_data["ADDR"]
 
 #own modules
 from dataloader.loc_compute import MapDataManipulator
@@ -189,4 +191,4 @@ def handle_nukede(data):
 
 if __name__ == '__main__':
     LOG.Info("Starting on port 5000")
-    socketio.run(app, port=5000, host="0.0.0.0", allow_unsafe_werkzeug=True)
+    socketio.run(app, port=PORT, host=ADDR, allow_unsafe_werkzeug=True)

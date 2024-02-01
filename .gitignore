@@ -20,4 +20,4 @@ test.tif
 !data/other_data/
 
 #ignore important config files
-server_conf.yaml
+config/server_conf.yaml
