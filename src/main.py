@@ -8,11 +8,18 @@ from dataloader.dataloader import Dataloader
 import numpy as np
 from dataloader.random_fact import generate_fact
 from modules.loging import Logging
+import yaml
 
 LOG = Logging("Main")
 
 main_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(main_dir,"src"))
+
+#read server config
+config = open(os.path.join(main_dir, "server_conf.yaml"))
+config_data = yaml.safe_load(config)
+
+API_KEY = config_data["KEY"]
 
 #own modules
 from dataloader.loc_compute import MapDataManipulator
@@ -50,7 +57,7 @@ def index():
             "value": nuke["value"]
         })
 
-    return render_template('index.html', nuke_data=nukes)
+    return render_template('index.html', nuke_data=nukes, api_key=API_KEY)
     
 
 @socketio.on('generate')

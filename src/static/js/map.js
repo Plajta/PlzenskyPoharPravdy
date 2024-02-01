@@ -12,17 +12,9 @@ window.onload = () => {
         console.error(`ERROR(${err.code}): ${err.message}`);
     }, options);
 
-    /*
-    We create the map and set its initial coordinates and zoom.
-    See https://leafletjs.com/reference.html#map
-    */
     map = L.map('map').setView({lng: longitude, lat: latitude}, 16);
 
-    /*
-    Then we add a raster tile layer with Mapy NG tiles
-    See https://leafletjs.com/reference.html#tilelayer
-    */
-    L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${map_key}`, {
+    L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
     minZoom: 0,
     maxZoom: 19,
     attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',

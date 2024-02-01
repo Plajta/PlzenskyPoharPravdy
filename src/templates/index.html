@@ -47,7 +47,8 @@
             var bomb_longitude = 14.418540;
             var bomb_latitude = 50.073658;
             var nuckes_list = {{ nuke_data | tojson | safe }};
-            var map_key = { map_key }
+            
+            const API_KEY = "{{ api_key }}"
         </script>
         <script src="../static/js/map.js"></script>
         <script type="text/babel" src="../static/js/index.js" async defer></script>
