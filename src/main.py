@@ -104,7 +104,7 @@ def handle_get_city(data):
         x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
                         params={"lon": data["lng"], "lat": data["lat"]},
                         headers={"accept": "application/json",
-                                "X-Mapy-Api-Key": "YmWIzXtT9Xx5rhFEc2rLnY8ymxWHpAW5D2pGf3P1QlA"})
+                                "X-Mapy-Api-Key": API_KEY})
 
         for y in x.json()["items"][0]["regionalStructure"]:
             if y["type"] == "regional.municipality":
