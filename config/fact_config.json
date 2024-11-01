@@ -1,6 +1,6 @@
 {
     "svatby_a_rozvody": {
-        "filepath": "pohyb2022.csv",
+        "filepath": ["pohyb2021.csv", "pohyb2022.csv", "pohyb2023.csv"],
         "columns": [
             {
                 "column": "vuk",
@@ -31,7 +31,7 @@
         "template": "Vědeli jste, že v {obec} se za rok {rok} vzalo {snatky} a rozvedlo {rozvody} párů?"
     },
     "zemreli": {
-        "filepath": "pohyb2022.csv",
+        "filepath": ["pohyb2021.csv", "pohyb2022.csv", "pohyb2023.csv"],
         "columns": [
             {
                 "column": "vuk",
@@ -50,7 +50,7 @@
         "template": "Vědeli jste, že v {obec} za rok {rok} zemřelo {smrti} lidi."
     },
     "pristehovali": {
-        "filepath": "pohyb2022.csv",
+        "filepath": ["pohyb2021.csv", "pohyb2022.csv", "pohyb2023.csv"],
         "columns": [
             {
                 "column": "vuk",
@@ -69,7 +69,7 @@
         "template": "Vědeli jste, že v roce {rok} se do {obec} pristěhovalo {pristehovalo} lidi?"
     },
     "zumpa": {
-        "filepath": "kanalizace.csv",
+        "filepath": ["kanalizace.csv"],
         "columns": [
             {
                 "column": "odpad_kod",
@@ -88,6 +88,7 @@
         "template": "Vědeli jste, že podle statistik z roku {rok} je v {obec} {pocet_zump} domů s odpadem vedoucím do žumpy?"
     },
     "bezkan": {
+        "filepath": ["kanalizace.csv"],
         "columns": [
             {
                 "column": "odpad_kod",
@@ -106,6 +107,7 @@
         "template": "Vědeli jste, že podle statistik z roku {rok} je v {obec} {pocet_bezkan} domů bez kanalizace?"
     },
     "bezkuch": {
+        "filepath": ["kuchyne.csv"],
         "columns": [
             {
                 "column": "kuchyne_kod",
@@ -124,7 +126,7 @@
         "template": "Vědeli jste, že podle statistik z roku {rok} je v {obec} {pocet_bezkuch} domů bez kuchyně nebo kuchyňského koutu?"
     },
     "prum_muz": {
-        "filepath": "vek_podle_pohlavi.csv",
+        "filepath": ["vek_podle_pohlavi.csv"],
         "columns": [
             {
                 "column": "pohlavi_kod",
@@ -143,7 +145,7 @@
         "template": "Vědeli jste, že podle statistik z roku {rok} je průměrnému muži v {obec} {prum_vek} let?"
     },
     "prum_zena": {
-        "filepath": "vek_podle_pohlavi.csv",
+        "filepath": ["vek_podle_pohlavi.csv"],
         "columns": [
             {
                 "column": "pohlavi_kod",

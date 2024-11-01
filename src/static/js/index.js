@@ -237,7 +237,7 @@ const Menu = (props) => {
                             </div>
                             {textdesc != "" && (
                                 <div>
-                                    <p>Víte, že jste pravě zabili {textdesc["all_peope"]} lidí?</p>
+                                    <p>Víte, že jste pravě zabili {textdesc["all_peope"].toLocaleString('cs')} lidí?</p>
                                     <p>{textdesc["women"]}% žen</p>
                                     <p>{textdesc["men"]}% mužů</p>
                                     <p>{textdesc["grass"]} grass</p>

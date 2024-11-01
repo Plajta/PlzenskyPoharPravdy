@@ -34,24 +34,24 @@ window.onload = () => {
     that shows a clickable logo.
     See https://leafletjs.com/reference.html#control
     */
-    // const LogoControl = L.Control.extend({
-    // options: {
-    //     position: 'bottomleft',
-    // },
+    const LogoControl = L.Control.extend({
+    options: {
+        position: 'bottomleft',
+    },
 
-    // onAdd: function (map) {
-    //     const container = L.DomUtil.create('div');
-    //     const link = L.DomUtil.create('a', '', container);
+    onAdd: function (map) {
+        const container = L.DomUtil.create('div');
+        const link = L.DomUtil.create('a', '', container);
 
-    //     link.setAttribute('href', 'http://mapy.cz/');
-    //     link.setAttribute('target', '_blank');
-    //     link.innerHTML = '<img src="https://api.mapy.cz/img/api/logo.svg" />';
-    //     L.DomEvent.disableClickPropagation(link);
+        link.setAttribute('href', 'http://mapy.cz/');
+        link.setAttribute('target', '_blank');
+        link.innerHTML = '<img src="https://api.mapy.cz/img/api/logo.svg" />';
+        L.DomEvent.disableClickPropagation(link);
 
-    //     return container;
-    // },
-    // });
-    // new LogoControl().addTo(map);
+        return container;
+    },
+    });
+    new LogoControl().addTo(map);
     
 }
 

@@ -10,7 +10,7 @@ with open('config/fact_config.json') as json_file:
 def generate_fact(dataload, obec):
     chosen = random.choice(list(categories.values()))
     try:
-        path = chosen["filepath"]
+        path = random.choice(chosen["filepath"])
     except Exception:
         path = None
     results = []
