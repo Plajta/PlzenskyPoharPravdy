@@ -263,9 +263,9 @@ function App() {
     const [itistime, setItIsTime] = React.useState(false);
     const [itistime_light, setItIsTimeLight] = React.useState(false);
     return(
-        <div className="main_cont">  
+        <div className="main_cont">
             <Menu setItIsTime={setItIsTime} setItIsTimeLight={setItIsTimeLight}/>
-            
+
             <div className={itistime ? "bomb_do" : "bomb"}><img src="../static/img/nuke.svg" width="50"></img></div>
             <div className={itistime_light ? "nuke_light_do" : "nuke_light"}></div>
         </div>

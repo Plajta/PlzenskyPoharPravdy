@@ -137,14 +137,19 @@ input::placeholder{
     position: absolute;
     top: 35vh;
     left: 50%;
+    margin:-25px;
     z-index: 9999;
-    animation-timing-function: ease-in;
-    animation-name: bomb_explode;
+    animation-timing-function: ease-out, ease-in;
+    animation-name: bomb_explode_x, bomb_explode_y;
     animation-duration: 1s;
 }
-@keyframes bomb_explode {
-    0%   {top: 0;left: 0; transform: rotate(0deg);}
-    100% {top:35vh; left:50%; transform: translate(-50%,-60%) rotate(90deg);}
+@keyframes bomb_explode_x {
+    0%   {left: 0; transform: translateX(0)}
+    100% {left:50%; transform: translateX(-50%)}
+  }
+@keyframes bomb_explode_y {
+    0%   {top: 0; transform: translateY(0) rotate(0deg);}
+    100% {top:35vh; transform: translateY(-60%) rotate(90deg);}
   }
 
 .nuke_light{
