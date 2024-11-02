@@ -52,52 +52,44 @@ socket.on('explode_nuke', function(nuke_data){
     setTimeout(() => 
     { 
         //nuke data for exploding
-        map.remove()
-        map = L.map('map').setView({lng: bomb_longitude, lat: bomb_latitude}, 12);
-
-        L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
-            minZoom: 0,
-            maxZoom: 19,
-            attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
-        }).addTo(map);
-
+        map_reset(bomb_longitude, bomb_latitude, 12);
         
         L.circle([bomb_latitude, bomb_longitude], {
             color: '#3ef7b3',
             fillColor: '#3ef7b3',
             fillOpacity: 0.2,
             radius: nuke_data["nuke_data"]["l-blast-radius"]*1000
-        }).addTo(map);
+        }).addTo(marker_group);
         L.circle([bomb_latitude, bomb_longitude], {
             color: '#595959',
             fillColor: '#595959',
             fillOpacity: 0.2,
             radius: nuke_data["nuke_data"]["t-radiation-radius"]*1000
-        }).addTo(map);
+        }).addTo(marker_group);
         L.circle([bomb_latitude, bomb_longitude], {
             color: '#ffe100',
             fillColor: '#ffe100',
             fillOpacity: 0.2,
             radius: nuke_data["nuke_data"]["m-blast-radius"]*1000
-        }).addTo(map);
+        }).addTo(marker_group);
         L.circle([bomb_latitude, bomb_longitude], {
             color: 'green',
             fillColor: '#42f56c',
             fillOpacity: 0.2,
             radius: nuke_data["nuke_data"]["radiation-radius"]*1000
-        }).addTo(map);
+        }).addTo(marker_group);
         L.circle([bomb_latitude, bomb_longitude], {
             color: '#ff8800',
             fillColor: '#ff8800',
             fillOpacity: 0.2,
             radius: nuke_data["nuke_data"]["h-blast-radius"]*1000
-        }).addTo(map);
+        }).addTo(marker_group);
         L.circle([bomb_latitude, bomb_longitude], {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.2,
             radius: nuke_data["nuke_data"]["fireball-radius"]*1000
-        }).addTo(map);
+        }).addTo(marker_group);
     }, 1100);
     setTimeout(() => { page_props.setItIsTimeLight(false);}, 6000);
 }
@@ -108,46 +100,17 @@ const nukemapChange = (setValue) => {
     console.log(bomb_longitude)
     console.log(bomb_latitude)
 
-    map.remove()
-    map = L.map('map').setView({lng: bomb_longitude, lat: bomb_latitude}, 16);
-
-    L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
-        minZoom: 0,
-        maxZoom: 19,
-        attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
-    }).addTo(map);
-
-
-
+    map_reset(bomb_longitude, bomb_latitude, 16);
     // add_circle([latitude, longitude])
-
-    marker_bomb = L.marker([bomb_latitude, bomb_longitude], { draggable: true }).addTo(map);
-    marker_bomb.bindPopup("<b>Vaše bomba</b>").openPopup()
-    marker_bomb.on('dragend', function (event) {
-        var marker = event.target;
-        bomb_latitude = marker_bomb.getLatLng().lat;
-        bomb_longitude = marker_bomb.getLatLng().lng;
-        marker.bindPopup("<b>Vaše bomba</b>").openPopup()
-    });
+    marker_bomb.setLatLng([bomb_latitude, bomb_longitude]).addTo(marker_group).openPopup();
 }
 
 const factsmapChange = (setValue) => {
     setValue(false)
 
-    map.remove()
-    map = L.map('map').setView({lng: fact_longitude, lat: fact_latitude}, 16);
-    L.tileLayer(`https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
-        minZoom: 0,
-        maxZoom: 19,
-        attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
-    }).addTo(map);
-    marker_gps = L.marker([fact_latitude, fact_longitude], { draggable: true }).addTo(map);
-    marker_gps.on('dragend', function (event) {
-        socket.emit('get_city', {lat:marker_gps.getLatLng().lat, lng:marker_gps.getLatLng().lng});
-        var marker = event.target;
-        fact_latitude = marker.getLatLng().lat;
-        fact_longitude = marker.getLatLng().lng;
-    });
+    map_reset(fact_longitude, fact_latitude, 16);
+
+    marker_gps.setLatLng([fact_latitude, fact_longitude]).addTo(marker_group);
 }
 
 const nuke_option_list = nuckes_list.map(nuke =>

@@ -47,6 +47,30 @@ map_manip = MapDataManipulator()
 app = Flask(__name__)
 socketio = SocketIO(app)
 
+
+def rgeocode_city(data):
+    city = ""
+    country = ""
+    try:
+        x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
+                        params={"lon": data["lng"], "lat": data["lat"]},
+                        headers={"accept": "application/json",
+                                 "referer": "https://plajta.vesek.eu/",
+                                 "refererPolicy": "strict-origin-when-cross-origin",
+                                 "X-Mapy-Api-Key": API_KEY})
+
+        for y in x.json()["items"][0]["regionalStructure"]:
+            if y["type"] == "regional.municipality":
+                city = y["name"]
+            if y["type"] == "regional.country":
+                country = y["name"]
+    except Exception as E:
+        LOG.Error(f"City not found!")
+        LOG.Error(E, 0)
+
+    return city, country
+
+
 @app.route("/")
 def index():
     #loading nukesPrague
@@ -67,24 +91,7 @@ def handle_generate(data):
     #generate random fact in current region
 
     #city info
-    city = ""
-    country = ""
-    try:
-        x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
-                        params={"lon": data["lng"], "lat": data["lat"]},
-                        headers={"accept": "application/json",
-                                 "referer": "https://plajta.vesek.eu/",
-                                 "refererPolicy": "strict-origin-when-cross-origin",
-                                 "X-Mapy-Api-Key": API_KEY})
-
-        for y in x.json()["items"][0]["regionalStructure"]:
-            if y["type"] == "regional.municipality":
-                city = y["name"]
-            if y["type"] == "regional.country":
-                country = y["name"]
-    except Exception as E:
-        LOG.Error(f"City not found!")
-        LOG.Error(E, 0)
+    city, country = rgeocode_city(data)
 
     if country != "Česko":
         emit("client_response", "bad_country")
@@ -101,20 +108,8 @@ def handle_generate(data):
 
 @socketio.on('get_city')
 def handle_get_city(data):
-    city = ""
-    try:
-        x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
-                        params={"lon": data["lng"], "lat": data["lat"]},
-                        headers={"accept": "application/json",
-                                 "referer": "https://plajta.vesek.eu/",
-                                 "refererPolicy": "strict-origin-when-cross-origin",
-                                 "X-Mapy-Api-Key": API_KEY})
+    city, country = rgeocode_city(data)
 
-        for y in x.json()["items"][0]["regionalStructure"]:
-            if y["type"] == "regional.municipality":
-                city = y["name"]
-    except Exception as e:
-        LOG.Error(e)
     LOG.Info("city: "+city)
     emit("send_city", city)
 
@@ -126,24 +121,7 @@ def handle_nukede(data):
     choosed_nuke = data["choosed_nuke"]
 
     #city & country info
-    city = ""
-    country = ""
-    try:
-        x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
-                        params={"lon": longitude, "lat": latitude},
-                        headers={"accept": "application/json",
-                                 "referer": "https://plajta.vesek.eu/",
-                                 "refererPolicy": "strict-origin-when-cross-origin",
-                                 "X-Mapy-Api-Key": API_KEY})
-
-        for y in x.json()["items"][0]["regionalStructure"]:
-            if y["type"] == "regional.municipality":
-                city = y["name"]
-            if y["type"] == "regional.country":
-                country = y["name"]
-    except Exception as E:
-        LOG.Error(f"City not found!")
-        LOG.Error(E, 0)
+    city, country = rgeocode_city(data)
 
     if country != "Česko":
         emit("client_response", "bad_country")

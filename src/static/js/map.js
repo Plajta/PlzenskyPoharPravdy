@@ -19,13 +19,25 @@ window.onload = () => {
     maxZoom: 19,
     attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
     }).addTo(map);
-    marker_gps = L.marker([latitude, longitude], { draggable: true }).addTo(map);
+    marker_group = L.featureGroup();
+    map.addLayer(marker_group);
+
+    marker_gps = L.marker([latitude, longitude], { draggable: true }).addTo(marker_group);
     marker_gps.on('dragend', function (event) {
         var marker = event.target;
         socket.emit('get_city', {lat:marker.getLatLng().lat, lng:marker.getLatLng().lng});
         fact_latitude = marker.getLatLng().lat;
         fact_longitude = marker.getLatLng().lng;
         marker_same = false;
+    });
+
+    marker_bomb = L.marker([latitude, longitude], { draggable: true });
+    marker_bomb.bindPopup("<b>Vaše bomba</b>").openPopup()
+    marker_bomb.on('dragend', function (event) {
+        var marker = event.target;
+        bomb_latitude = marker_bomb.getLatLng().lat;
+        bomb_longitude = marker_bomb.getLatLng().lng;
+        marker.bindPopup("<b>Vaše bomba</b>").openPopup()
     });
 
     /*
@@ -53,6 +65,16 @@ window.onload = () => {
     });
     new LogoControl().addTo(map);
     
+}
+
+
+function map_reset(lng, lat, zoom) {
+
+    marker_group.remove();
+    marker_group = L.featureGroup();
+    map.setView({lng: lng, lat: lat}, zoom);
+    map.addLayer(marker_group);
+
 }
 
 
