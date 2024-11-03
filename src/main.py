@@ -52,18 +52,16 @@ def rgeocode_city(data):
     city = ""
     country = ""
     try:
-        x = requests.get("https://api.mapy.cz/v1/rgeocodeurl",
-                        params={"lon": data["lng"], "lat": data["lat"]},
-                        headers={"accept": "application/json",
-                                 "referer": "https://plajta.vesek.eu/",
-                                 "refererPolicy": "strict-origin-when-cross-origin",
-                                 "X-Mapy-Api-Key": API_KEY})
+        x = requests.get("https://nominatim.openstreetmap.org/reverse",
+                         params={"lon": data["lng"], "lat": data["lat"],
+                                 "format": "json", "zoom": 10},
+                         headers={"accept": "application/json",
+                                  "referer": "https://plajta.vesek.eu/",
+                                  "refererPolicy": "strict-origin-when-cross-origin"})
+        print(x.content)
 
-        for y in x.json()["items"][0]["regionalStructure"]:
-            if y["type"] == "regional.municipality":
-                city = y["name"]
-            if y["type"] == "regional.country":
-                country = y["name"]
+        city = x.json()["name"]
+        country = x.json()["address"]["country"]
     except Exception as E:
         LOG.Error(f"City not found!")
         LOG.Error(E, 0)
@@ -84,7 +82,7 @@ def index():
         })
 
     return render_template('index.html', nuke_data=nukes, api_key=API_KEY)
-    
+
 
 @socketio.on('generate')
 def handle_generate(data):
@@ -137,7 +135,7 @@ def handle_nukede(data):
         LOG.Error(E, 0)
 
     data_muz_percent = round((data_muz / data_all) * 100, 2)
-    data_zen_percent = round((data_zen / data_all) * 100, 2) 
+    data_zen_percent = round((data_zen / data_all) * 100, 2)
 
     #get nuke params
     selected_nuke = None
@@ -171,7 +169,6 @@ def handle_nukede(data):
         }
     })
 
-    
 
 if __name__ == '__main__':
     LOG.Info("Starting on port 5000")
