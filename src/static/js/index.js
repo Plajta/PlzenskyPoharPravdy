@@ -16,6 +16,7 @@ function moveToGeoPos() {
     if (longitude != 14.418540 && latitude != 50.073658){
         map.setView({lng: longitude, lat: latitude}, map.getZoom());
         marker_gps.setLatLng([latitude,longitude]);
+        socket.emit('get_city', {lat:latitude, lng:longitude});
         fact_latitude = latitude
         fact_longitude = longitude
     }
@@ -52,7 +53,7 @@ socket.on('explode_nuke', function(nuke_data){
     setTimeout(() => 
     { 
         //nuke data for exploding
-        map_reset(bomb_longitude, bomb_latitude, 12);
+        map_reset();
         
         L.circle([bomb_latitude, bomb_longitude], {
             color: '#3ef7b3',
@@ -91,6 +92,8 @@ socket.on('explode_nuke', function(nuke_data){
             radius: nuke_data["nuke_data"]["fireball-radius"]*1000
         }).addTo(marker_group);
     }, 1100);
+
+    map.setView({lng: bomb_longitude, lat: bomb_latitude}, 12);
     setTimeout(() => { page_props.setItIsTimeLight(false);}, 6000);
 }
 )
@@ -100,17 +103,21 @@ const nukemapChange = (setValue) => {
     console.log(bomb_longitude)
     console.log(bomb_latitude)
 
-    map_reset(bomb_longitude, bomb_latitude, 16);
+    map_reset();
     // add_circle([latitude, longitude])
     marker_bomb.setLatLng([bomb_latitude, bomb_longitude]).addTo(marker_group).openPopup();
+
+    map.setView({lng: bomb_longitude, lat: bomb_latitude}, 16);
 }
 
 const factsmapChange = (setValue) => {
     setValue(false)
 
-    map_reset(fact_longitude, fact_latitude, 16);
+    map_reset();
 
     marker_gps.setLatLng([fact_latitude, fact_longitude]).addTo(marker_group);
+
+    map.setView({lng: fact_longitude, lat: fact_latitude}, 16);
 }
 
 const nuke_option_list = nuckes_list.map(nuke =>

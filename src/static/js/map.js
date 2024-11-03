@@ -25,19 +25,20 @@ window.onload = () => {
     marker_gps = L.marker([latitude, longitude], { draggable: true }).addTo(marker_group);
     marker_gps.on('dragend', function (event) {
         var marker = event.target;
-        socket.emit('get_city', {lat:marker.getLatLng().lat, lng:marker.getLatLng().lng});
         fact_latitude = marker.getLatLng().lat;
         fact_longitude = marker.getLatLng().lng;
+        socket.emit('get_city', {lat:fact_latitude, lng:fact_longitude});
         marker_same = false;
     });
 
     marker_bomb = L.marker([latitude, longitude], { draggable: true });
-    marker_bomb.bindPopup("<b>Vaše bomba</b>").openPopup()
+    marker_bomb.bindPopup("<b>Vaše bomba</b>")
     marker_bomb.on('dragend', function (event) {
         var marker = event.target;
         bomb_latitude = marker_bomb.getLatLng().lat;
         bomb_longitude = marker_bomb.getLatLng().lng;
-        marker.bindPopup("<b>Vaše bomba</b>").openPopup()
+        marker_same = false;
+        marker.openPopup()
     });
 
     /*
@@ -68,11 +69,10 @@ window.onload = () => {
 }
 
 
-function map_reset(lng, lat, zoom) {
+function map_reset() {
 
     marker_group.remove();
     marker_group = L.featureGroup();
-    map.setView({lng: lng, lat: lat}, zoom);
     map.addLayer(marker_group);
 
 }
@@ -85,18 +85,16 @@ function watch(pos) {
         longitude = crd.longitude
         latitude = crd.latitude
         if (marker_same){
-            fact_latitude = latitude
-            fact_longitude = longitude
-        }
-        if (!marker_bomb){
-            bomb_longitude = longitude
-            bomb_latitude = latitude
-            if (marker_same){
-                map.setView({lng: longitude, lat: latitude});
-                marker_gps.setLatLng([latitude,longitude]);
-            
-                navigator.geolocation.clearWatch(id)
-            }
+            bomb_latitude = fact_latitude = latitude
+            bomb_longitude = fact_longitude = longitude
+
+            map.setView({lng: longitude, lat: latitude});
+
+            marker_gps.setLatLng([latitude,longitude]);
+            socket.emit('get_city', {lat:latitude, lng:longitude});
+            marker_bomb.setLatLng([latitude,longitude]);
+
+            navigator.geolocation.clearWatch(id)
         }
     }
     navigator.geolocation.clearWatch(id)
